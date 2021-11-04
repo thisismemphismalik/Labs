@@ -6,7 +6,7 @@ Builder.load_file("./components/box/box.kv")
 
 
 class Box(MDCard, ButtonBehavior):
-    def __init__(self, box_image=None, text_one=None, text_two=None, code=None, **kwargs):
+    def __init__(self, box_image="./lnx.png", text_one="Lil Nas", text_two="7 500 FCFA", code="12345678", **kwargs):
         super().__init__(**kwargs)
 
         self.box_image = box_image

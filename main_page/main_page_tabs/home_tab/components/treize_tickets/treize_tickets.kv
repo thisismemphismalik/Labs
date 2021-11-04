@@ -1,0 +1,37 @@
+#:import Box components.box.box.Box
+#:import ListProperty kivy.properties.ListProperty
+
+<TreizeTickets>
+    header: "header"
+
+    pos_hint: {"top": 1}
+    md_bg_color: 1,1,1,1
+    padding: [0, 15, 0, 15]
+    spacing: 15
+    orientation: "vertical"
+    adaptive_height: True
+
+    MDBoxLayout:
+        orientation: "vertical"
+        adaptive_height: True
+        spacing: 10
+        MDLabel:
+            adaptive_height: True
+            text: root.header
+            font_size: 35
+            pos_hint: {"x": .11}
+
+        ScrollView:
+            bar_width: 0
+            size_hint_y: None
+            height: 220
+            do_scroll_y: False
+            do_scroll_x: True
+
+            MDBoxLayout:
+                id: boxes_container
+                spacing: 25
+                padding: [25,0]
+                adaptive_width: True
+                orientation: "horizontal"
+

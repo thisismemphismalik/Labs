@@ -1,5 +1,44 @@
-#:import Box components.box.box.Box
+#:import TreizeTickets main_page.main_page_tabs.home_tab.components.treize_tickets.treize_tickets.TreizeTickets
+#:import ToolbarButton components.toolbar.toolbar_button.toolbar_button.ToolbarButton
 
 <HomeTab>
     name: "HomeTab"
-    Box:
+    md_bg_color: 1,1,1,1
+    ScrollView:
+        do_scroll_x: False
+        bar_width: 2
+        md_bg_color: 1,1,1,1
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            padding: [0,0,0,30]
+
+            MDBoxLayout:
+                adaptive_height: True
+#                md_bg_color: 1,1,0,.3
+                MDLabel:
+                    text: "Home"
+                    font_size: 50
+
+
+            MDBoxLayout:
+                id: first_scroll
+                padding: [0, 15, 0, 0]
+                spacing: 0
+                orientation: "vertical"
+                adaptive_height: True
+
+            MDBoxLayout:
+                adaptive_height: True
+
+                MDLabel:
+                    text: "cliquer"
+                    adaptive_width: True
+                    halign: "right"
+
+                MDIconButton:
+                    icon: "ticket-confirmation-outline"
+
+                MDLabel:
+                    text: "pour voir tous les tickets"
