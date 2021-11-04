@@ -1,0 +1,21 @@
+#:import Toolbar components.toolbar.toolbar.Toolbar
+#:import HomeTab main_page.main_page_tabs.home_tab.home_tab.HomeTab
+#:import TicketsTab main_page.main_page_tabs.tickets_tab.tickets_tab.TicketsTab
+#:import MessagesTab main_page.main_page_tabs.messages_tab.messages_tab.MessagesTab
+#:import ProfileTab main_page.main_page_tabs.profile_tab.profile_tab.ProfileTab
+
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<MainPage>
+    name: "MainPage"
+    MDBoxLayout:
+        orientation: "vertical"
+        ScreenManager:
+            id: tabs_manager
+            transition: NoTransition()
+            HomeTab:
+            TicketsTab:
+            MessagesTab:
+            ProfileTab:
+
+        Toolbar:

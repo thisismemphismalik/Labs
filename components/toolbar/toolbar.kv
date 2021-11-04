@@ -1,0 +1,28 @@
+#:import ToolbarButton components.toolbar.toolbar_button.toolbar_button.ToolbarButton
+
+<Toolbar>
+    md_bg_color: 0,0,0,1
+    size_hint: 1, None
+    height: 55
+    MDBoxLayout:
+        adaptive_width: True
+#        md_bg_color: 1,1,1,.3
+        pos_hint: {"center_x": .5}
+        spacing: 20
+
+        ToolbarButton:
+            icon: "home-lightbulb"
+            selected: True
+            tab: "HomeTab"
+
+        ToolbarButton:
+            icon: "ticket-confirmation-outline"
+            tab: "TicketsTab"
+
+        ToolbarButton:
+            icon: "card-text-outline"
+            tab: "MessagesTab"
+
+        ToolbarButton:
+            icon: "face-outline"
+            tab: "ProfileTab"
