@@ -3,7 +3,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 
 from components.box.box import Box
 
-Builder.load_file("./main_page/main_page_tabs/home_tab/components/treize_tickets/treize_tickets.kv")
+Builder.load_file("./components/treize_tickets/treize_tickets.kv")
 
 
 class TreizeTickets(MDBoxLayout):
@@ -12,7 +12,7 @@ class TreizeTickets(MDBoxLayout):
 
         if boxes is None:
             boxes = [Box() for i in range(13)]
-        self.header = header#.upper()
+        self.header = header.capitalize()
         self.boxes = boxes
 
         for item in boxes:

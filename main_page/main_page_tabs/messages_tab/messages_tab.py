@@ -2,8 +2,7 @@ from kivy.lang import Builder
 from kivymd.effects.stiffscroll import StiffScrollEffect
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
-
-from main_page.main_page_tabs.messages_tab.components.list_item.list_item import ListItem
+from components.list_item.list_item import ListItem
 
 Builder.load_file("./main_page/main_page_tabs/messages_tab/messages_tab.kv")
 

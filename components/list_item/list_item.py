@@ -4,7 +4,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
 from kivymd.uix.floatlayout import MDFloatLayout
 
-Builder.load_file("./main_page/main_page_tabs/messages_tab/components/list_item/list_item.kv")
+Builder.load_file("./components/list_item/list_item.kv")
 
 
 class ListItem(MDCard, ButtonBehavior):

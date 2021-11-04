@@ -3,7 +3,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
-from main_page.main_page_tabs.home_tab.components.treize_tickets.treize_tickets import TreizeTickets
+from components.treize_tickets.treize_tickets import TreizeTickets
 
 Builder.load_file("./main_page/main_page_tabs/home_tab/home_tab.kv")
 
