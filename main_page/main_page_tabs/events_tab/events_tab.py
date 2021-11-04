@@ -5,4 +5,7 @@ Builder.load_file("./main_page/main_page_tabs/events_tab/events_tab.kv")
 
 
 class EventsTab(MDScreen):
-    pass
+    def __init__(self, **kw):
+        super().__init__(**kw)
+
+        pass
