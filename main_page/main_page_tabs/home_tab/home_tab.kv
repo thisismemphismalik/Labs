@@ -1,9 +1,11 @@
 #:import TreizeTickets main_page.main_page_tabs.home_tab.components.treize_tickets.treize_tickets.TreizeTickets
 #:import ToolbarButton components.toolbar.toolbar_button.toolbar_button.ToolbarButton
+#:import Header components.header.header.Header
 
 <HomeTab>
     name: "HomeTab"
-    md_bg_color: 1,1,1,1
+    md_bg_color: 0,0,0,1
+
     ScrollView:
         do_scroll_x: False
         bar_width: 0
@@ -13,6 +15,9 @@
             orientation: "vertical"
             adaptive_height: True
             padding: [0,0,0,30]
+            md_bg_color: 1,1,1,1
+
+            Header:
 
             MDBoxLayout:
                 id: first_scroll

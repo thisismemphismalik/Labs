@@ -12,7 +12,7 @@ class TreizeTickets(MDBoxLayout):
 
         if boxes is None:
             boxes = [Box() for i in range(13)]
-        self.header = header.upper()
+        self.header = header#.upper()
         self.boxes = boxes
 
         for item in boxes:

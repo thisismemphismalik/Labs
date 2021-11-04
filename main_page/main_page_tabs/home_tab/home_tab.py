@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
@@ -13,14 +14,12 @@ class HomeTab(MDScreen):
         self.button_added = False
 
     def on_kv_post(self, base_widget):
-        self.ids.first_scroll.add_widget(TreizeTickets(header="tendances"))
-        self.ids.first_scroll.add_widget(TreizeTickets(header="cette semaine"))
-        self.ids.first_scroll.add_widget(TreizeTickets(header="abordables"))
+        self.ids.first_scroll.add_widget(TreizeTickets(header="Tendances"))
+        self.ids.first_scroll.add_widget(TreizeTickets(header="Près de moi"))
+        self.ids.first_scroll.add_widget(TreizeTickets(header="Cette semaine"))
 
-    @staticmethod
-    def change_screen():
+    def change_screen(self):
         app = MDApp.get_running_app()
-        tabs_manager = app.root.ids.main_page.ids.tabs_manager
         buttons = app.root.ids.main_page.ids.toolbar.children[0].children
 
         for item in buttons:
@@ -32,5 +31,11 @@ class HomeTab(MDScreen):
 
         ticket_button.icon = ticket_button.icon[:~7]
         ticket_button.selected = True
+        Clock.schedule_once(self.switch, .3)
 
+    def switch(self, dt):
+        app = MDApp.get_running_app()
+        tabs_manager = app.root.ids.main_page.ids.tabs_manager
+        buttons = app.root.ids.main_page.ids.toolbar.children[0].children
+        ticket_button = buttons[2]
         tabs_manager.current = ticket_button.tab
