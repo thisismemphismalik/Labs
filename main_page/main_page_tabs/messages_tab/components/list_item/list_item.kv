@@ -1,0 +1,38 @@
+<ListItem>
+    elevation: 0
+
+    title: "Recption de tickets"
+    subject: "Issa Doumbia vous a offert un ticket"
+    date: "12 mai"
+    code: "87654321"
+
+    orientation: "vertical"
+    size_hint: 1, None
+    height: 60
+
+    MDSeparator:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: [15,5,10,7]
+
+        MDBoxLayout:
+
+            MDLabel:
+                text: root.title
+                bold: True
+            MDLabel:
+                text: root.date
+                theme_text_color: "Custom"
+                text_color: 0,0,0,.5
+                halign: "right"
+                font_size: 13
+
+        MDBoxLayout:
+
+            MDLabel:
+                text: root.subject
+                theme_text_color: "Custom"
+                text_color: 0,0,0,.5
+
+    MDSeparator:

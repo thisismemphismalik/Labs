@@ -1,4 +1,40 @@
+#:import ListItem main_page.main_page_tabs.messages_tab.components.list_item.list_item.ListItem
+#:import StiffScrollEffect kivymd.effects.stiffscroll.StiffScrollEffect
+
 <MessagesTab>
     name: "MessagesTab"
-    MDLabel:
-        text: "Messages Tab"
+    md_bg_color: 1,1,1,1
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: 0
+        effect_cls: StiffScrollEffect
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            padding: [0,0,0,30]
+            md_bg_color: 1,1,1,1
+
+            Header:
+                current_page: "messages"
+
+            MDBoxLayout:
+                id: first_scroll
+                spacing: 0
+                orientation: "vertical"
+                adaptive_height: True
+
+#                ListItem:
+#                    md_bg_color: 0,0,0,.1
+#                ListItem:
+#                ListItem:
+#                ListItem:
+#                ListItem:
+#                    md_bg_color: 0,0,0,.1
+#                ListItem:
+#                ListItem:
+#                ListItem:
+#                ListItem:
+#                ListItem:
+#                    md_bg_color: 0,0,0,.1
