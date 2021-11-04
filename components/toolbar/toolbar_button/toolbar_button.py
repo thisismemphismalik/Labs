@@ -28,5 +28,5 @@ class ToolbarButton(MDIconButton):
             self.selected = True
 
             tabs_manager = app.root.ids.main_page.ids.tabs_manager
-            print(self.tab)
+            # print(self.tab)
             tabs_manager.current = self.tab
