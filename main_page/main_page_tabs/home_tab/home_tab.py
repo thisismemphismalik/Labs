@@ -1,6 +1,7 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivymd.app import MDApp
+from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
 from main_page.main_page_tabs.home_tab.components.treize_tickets.treize_tickets import TreizeTickets
 
@@ -12,11 +13,12 @@ class HomeTab(MDScreen):
         super().__init__(**kw)
 
         self.button_added = False
+        self.license_dialog = None
 
     def on_kv_post(self, base_widget):
         self.ids.first_scroll.add_widget(TreizeTickets(header="Tendances"))
-        self.ids.first_scroll.add_widget(TreizeTickets(header="Près de moi"))
         self.ids.first_scroll.add_widget(TreizeTickets(header="Cette semaine"))
+        self.ids.first_scroll.add_widget(TreizeTickets(header="Ce mois"))
 
     def change_screen(self):
         app = MDApp.get_running_app()
@@ -31,7 +33,7 @@ class HomeTab(MDScreen):
 
         ticket_button.icon = ticket_button.icon[:~7]
         ticket_button.selected = True
-        Clock.schedule_once(self.switch, .3)
+        Clock.schedule_once(self.switch, .25)
 
     def switch(self, dt):
         app = MDApp.get_running_app()
@@ -39,3 +41,13 @@ class HomeTab(MDScreen):
         buttons = app.root.ids.main_page.ids.toolbar.children[0].children
         ticket_button = buttons[2]
         tabs_manager.current = ticket_button.tab
+
+    def copyright(self, scroller):
+        if not - 0.5 < scroller.scroll_y < 1.5:
+            if not self.license_dialog:
+                self.license_dialog = MDDialog(md_bg_color=[0, 0, 0, 1],
+                                               title="[color=#ffffff][size=35]13.[/color][/size]",
+                                               text="[color=#ffffff][size=35]from Memphis Laboratories[/color][/size]"
+                                                    "\n \n \n[color=#ffffff][size=17]version 1.0[/size][/color]")
+
+            self.license_dialog.open()

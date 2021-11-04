@@ -7,4 +7,7 @@ Builder.load_file("./components/header/header.kv")
 
 
 class Header(MDFloatLayout):
-    pass
+    def __init__(self, current_page="current_tab", **kwargs):
+        super().__init__(**kwargs)
+
+        self.current_tab = current_page

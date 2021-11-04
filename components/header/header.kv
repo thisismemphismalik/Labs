@@ -1,4 +1,5 @@
 <Header>:
+    current_page: "current_tab"
     md_bg_color: 0,0,0,1
     orientation: "vertical"
     size_hint: 1, None
@@ -7,22 +8,18 @@
     MDLabel:
         adaptive_size: True
         pos_hint: {"x": .1, "center_y": .565}
-        valign: "center"
         text: "13."
         font_size: 24
         bold: True
-        halign: "left"
         theme_text_color: "Custom"
         text_color: 1,1,1,1
 
     MDLabel:
         adaptive_size: True
         pos_hint: {"right": .9, "center_y": .565}
-        valign: "center"
-        text: "accueil"
+        text: root.current_page
         font_size: 24
         bold: True
-        halign: "left"
         theme_text_color: "Custom"
         text_color: 1,1,1,1
 
