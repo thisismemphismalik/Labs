@@ -7,12 +7,15 @@ Builder.load_file("./components/box/box.kv")
 
 
 class Box(MDCard, ButtonBehavior):
-    def __init__(self, box_image="./lnx.png", text_one="Lil Nas", text_two="7 500 FCFA", code="12345678", **kwargs):
+    def __init__(self, box_image="./lnx.png", name="Lil Nas X", price="7 500 FCFA ~ 10 000 FCFA", code="12345678",
+                 color="red",
+                 **kwargs):
         super().__init__(**kwargs)
 
         self.box_image = box_image
-        self.text_one = text_one
-        self.text_two = text_two
+        self.name = name
+        self.price = price
+        self.color = color
         self.code = code
 
     def on_release(self):

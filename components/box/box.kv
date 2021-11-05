@@ -1,14 +1,16 @@
 <Box>
     code: "12345678"
     box_image: "./lnx.png"
-    text_one: "Memphis Malik"
-    text_two: "35 lovers"
+    name: "Memphis Malik"
+    price: "35 lovers"
+    color: "red"
+    color_map: {"black": [0,0,0,.3],"blue": [0,0,1,.3],"green": [0,1,0,.3],"red": [1,0,0,.3],"sky-blue": [0,1,1,.3],"violet": [1,0,1,.3],"yellow": [1,1,0,.3],"white": [1,1,1,.3]}
 
     pos_hint: {"center_x": .5, "center_y": .5}
     size_hint: None, None
     orientation: "vertical"
-    md_bg_color: 1,1,1,1
-    size: 200, 200
+    md_bg_color: self.color_map[f"{self.color}"]
+    size: 250, 200
     elevation: 1
     radius: 15
 
@@ -28,15 +30,15 @@
         padding: [0,3,0,0]
 
         MDLabel:
-            text: root.text_one
+            text: root.name
             adaptive_size: True
-            font_size: 17
+            font_size: 18
             bold: True
             pos_hint: {"center_x": .5}
             theme_text_color: "Custom"
 
         MDLabel:
-            text: root.text_two
+            text: root.price
             adaptive_size: True
             font_size: 17
             pos_hint: {"center_x": .5}

@@ -1,14 +1,15 @@
 <Category>
-    code: "abcdefgh"
+    code: "hgfedcba"
     box_image: "./lnx.png"
     name: "Concert"
     events: 13
     color: "red"
+    color_map: {"black": [0,0,0,.3],"blue": [0,0,1,.3],"green": [0,1,0,.3],"red": [1,0,0,.3],"sky-blue": [0,1,1,.3],"violet": [1,0,1,.3],"yellow": [1,1,0,.3],"white": [1,1,1,.3]}
 
     pos_hint: {"center_x": .5, "center_y": .5}
     size_hint: None, None
     orientation: "vertical"
-    size: 200, 200
+    size: 250, 200
     elevation: 1
     radius: 15
     md_bg_color: self.color_map[f"{self.color}"]
