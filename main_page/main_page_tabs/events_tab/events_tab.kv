@@ -2,5 +2,27 @@
 
 <EventsTab>
     name: "TicketsTab"
+    md_bg_color: 0,0,0,1
 
-    Event:
+    ScrollView:
+        do_scroll_x: False
+        bar_width: 0
+#        effect_cls: StiffScrollEffect
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            padding: [0,0,0,30]
+            spacing: 25
+            md_bg_color: 1,1,1,1
+
+            Header:
+                current_page: "évènements"
+
+            MDBoxLayout:
+                id: first_scroll
+                spacing: 25
+                orientation: "vertical"
+                adaptive_height: True
+
+                Event:

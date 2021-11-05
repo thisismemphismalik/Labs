@@ -8,7 +8,7 @@ Builder.load_file("./components/event/event.kv")
 
 class Event(MDCard, ButtonBehavior):
     def __init__(self, box_image="./lnx.png", name="Memphis Malik", price="5 000 FCFA ~ 10 000 FCFA",
-                 location="Badalabougou", date="12 mai", code="12345678", **kwargs):
+                 location="Badalabougou", date="12 mai", code="abcdefgh", **kwargs):
         super().__init__(**kwargs)
 
         self.box_image = box_image
