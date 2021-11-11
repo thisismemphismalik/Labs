@@ -1,24 +1,27 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
+from kivy.uix.button import Button
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
+
+from components.box.box import Box
 from components.treize_tickets.treize_tickets import TreizeTickets
 
 Builder.load_file("./main_page/main_page_tabs/home_tab/home_tab.kv")
 
 
 class HomeTab(MDScreen):
+    def on_kv_post(self, base_widget):
+        for i in range(15):
+            self.ids.first_scroll.add_widget(Box(name="KO", color="black",
+                                             code="azerty",box_image="./lnx.png",
+                                             price="1425"))
     def __init__(self, **kw):
         super().__init__(**kw)
 
         self.button_added = False
         self.license_dialog = None
-
-    def on_kv_post(self, base_widget):
-        self.ids.first_scroll.add_widget(TreizeTickets(header="Tendances"))
-        self.ids.first_scroll.add_widget(TreizeTickets(header="Cette semaine"))
-        self.ids.first_scroll.add_widget(TreizeTickets(header="Ce mois"))
 
     def change_screen(self):
         app = MDApp.get_running_app()

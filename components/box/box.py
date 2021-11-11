@@ -7,16 +7,26 @@ Builder.load_file("./components/box/box.kv")
 
 
 class Box(MDCard, ButtonBehavior):
-    def __init__(self, box_image="./lnx.png", name="Lil Nas X", price="7 500 FCFA ~ 10 000 FCFA", code="12345678",
-                 color="red",
-                 **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, box_image, name, price, color, code, **kwargs):
+
+        self.color_map = {
+            "black": [0,0,0,.3],
+            "blue": [0,0,1,.3],
+            "green": [0,1,0,.3],
+            "red": [1,0,0,.3],
+            "sky-blue": [0,1,1,.3],
+            "violet": [1,0,1,.3],
+            "yellow": [1,1,0,.3],
+            "white": [1,1,1,.3]
+        }
 
         self.box_image = box_image
         self.name = name
         self.price = price
-        self.color = color
+        self.color = self.color_map[color]
         self.code = code
+
+        super().__init__(**kwargs)
 
     def on_release(self):
         app = MDApp.get_running_app()
