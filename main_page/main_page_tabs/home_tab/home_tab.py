@@ -1,3 +1,5 @@
+import random
+
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.uix.button import Button
@@ -7,21 +9,63 @@ from kivymd.uix.screen import MDScreen
 
 from components.box.box import Box
 from components.treize_tickets.treize_tickets import TreizeTickets
+from data import EVENTS
 
 Builder.load_file("./main_page/main_page_tabs/home_tab/home_tab.kv")
 
 
 class HomeTab(MDScreen):
     def on_kv_post(self, base_widget):
-        for i in range(15):
-            self.ids.first_scroll.add_widget(Box(name="KO", color="black",
-                                             code="azerty",box_image="./lnx.png",
-                                             price="1425"))
-    def __init__(self, **kw):
-        super().__init__(**kw)
+        boxes = []
+        events = [i for i in EVENTS.keys()]
+        for i in range(13):
+            event = random.choice(events)
 
+            box = Box(name=EVENTS[event]["name"],
+                      color=EVENTS[event]["color"],
+                      code=event,
+                      box_image=EVENTS[event]["image"],
+                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
+                            f'{EVENTS[event]["tickets"][1]["price"]}')
+            boxes.append(box)
+
+        self.ids.first_scroll.add_widget(TreizeTickets("This Week", boxes))
+
+        boxes.clear()
+        events = [i for i in EVENTS.keys()]
+        for i in range(13):
+            event = random.choice(events)
+
+            box = Box(name=EVENTS[event]["name"],
+                      color=EVENTS[event]["color"],
+                      code=event,
+                      box_image=EVENTS[event]["image"],
+                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
+                            f'{EVENTS[event]["tickets"][1]["price"]}')
+            boxes.append(box)
+
+        self.ids.first_scroll.add_widget(TreizeTickets("This Month", boxes))
+
+        boxes.clear()
+        events = [i for i in EVENTS.keys()]
+        for i in range(13):
+            event = random.choice(events)
+
+            box = Box(name=EVENTS[event]["name"],
+                      color=EVENTS[event]["color"],
+                      code=event,
+                      box_image=EVENTS[event]["image"],
+                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
+                            f'{EVENTS[event]["tickets"][1]["price"]}')
+            boxes.append(box)
+
+        self.ids.first_scroll.add_widget(TreizeTickets("Our Trends", boxes))
+
+    def __init__(self, **kw):
         self.button_added = False
         self.license_dialog = None
+
+        super().__init__(**kw)
 
     def change_screen(self):
         app = MDApp.get_running_app()
