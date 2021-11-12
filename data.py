@@ -111,8 +111,8 @@ EVENTS = {
     },
     "45S-12N-41K": {
         "name": "Event Name",
-        "image": "./lnx.png",
-        "color": "sky-blue",
+        "image": "./vin.jpg",
+        "color": "green",
         "category": "cinéma",
         "about": "description",
         "location": "Event Location",
@@ -1130,3 +1130,8 @@ EVENTS = {
         }
     },
 }
+
+# test = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+#
+# print(test[:10])
+# print(test[10:20])

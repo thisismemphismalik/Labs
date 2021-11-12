@@ -24,9 +24,8 @@ class HomeTab(MDScreen):
             box = Box(name=EVENTS[event]["name"],
                       color=EVENTS[event]["color"],
                       code=event,
-                      box_image=EVENTS[event]["image"],
-                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
-                            f'{EVENTS[event]["tickets"][1]["price"]}')
+                      image=EVENTS[event]["image"],
+                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("This Week", boxes))
@@ -39,9 +38,8 @@ class HomeTab(MDScreen):
             box = Box(name=EVENTS[event]["name"],
                       color=EVENTS[event]["color"],
                       code=event,
-                      box_image=EVENTS[event]["image"],
-                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
-                            f'{EVENTS[event]["tickets"][1]["price"]}')
+                      image=EVENTS[event]["image"],
+                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("This Month", boxes))
@@ -54,9 +52,8 @@ class HomeTab(MDScreen):
             box = Box(name=EVENTS[event]["name"],
                       color=EVENTS[event]["color"],
                       code=event,
-                      box_image=EVENTS[event]["image"],
-                      price=f'{EVENTS[event]["tickets"][3]["price"]} ~ '
-                            f'{EVENTS[event]["tickets"][1]["price"]}')
+                      image=EVENTS[event]["image"],
+                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("Our Trends", boxes))

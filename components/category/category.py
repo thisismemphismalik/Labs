@@ -7,8 +7,12 @@ Builder.load_file("./components/category/category.kv")
 
 
 class Category(MDCard, ButtonBehavior):
-    def __init__(self, images, name, events,
-                 code, color, **kwargs):
+    """
+    Category Box to call in the Events Tab
+
+    *to be called only in python code
+    """
+    def __init__(self, images, name, events, code, color, **kwargs):
 
         self.color_map = {
             "black": [0, 0, 0, .3],
@@ -23,7 +27,7 @@ class Category(MDCard, ButtonBehavior):
 
         self.images = images
         self.name = name
-        self.events = events
+        self.events = f"{events} Events"
         self.color = self.color_map[color]
         self.code = code
 

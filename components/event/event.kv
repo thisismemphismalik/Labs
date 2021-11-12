@@ -1,17 +1,10 @@
 <Event>
-    code: "abcdefgh"
-    box_image: "./lnx.png"
-    name: "Memphis Malik"
-    price: "5 000 FCFA ~ 10 000 FCFA"
-    location: "Badalabougou"
-    date: "12 mai"
-    md_bg_color: 1,0,0,.3
 
     pos_hint: {"center_x": .5, "center_y": .5}
     size_hint: None, None
     orientation: "vertical"
-#    md_bg_color: 1,1,1,1
     size: 300, 233
+    md_bg_color: self.color
     elevation: 1
     radius: 15
 
@@ -21,7 +14,7 @@
         radius: [15,15,0,0]
 
         FitImage:
-            source: root.box_image
+            source: root.image
             radius: [15,15,0,0]
 
     MDBoxLayout:

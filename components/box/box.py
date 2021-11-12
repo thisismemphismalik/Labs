@@ -7,20 +7,25 @@ Builder.load_file("./components/box/box.kv")
 
 
 class Box(MDCard, ButtonBehavior):
-    def __init__(self, box_image, name, price, color, code, **kwargs):
+    """
+    Home Box elements to call in the Home Tab
+
+    *to be called only in python code
+    """
+    def __init__(self, image, name, price, color, code, **kwargs):
 
         self.color_map = {
-            "black": [0,0,0,.3],
-            "blue": [0,0,1,.3],
-            "green": [0,1,0,.3],
-            "red": [1,0,0,.3],
-            "sky-blue": [0,1,1,.3],
-            "violet": [1,0,1,.3],
-            "yellow": [1,1,0,.3],
-            "white": [1,1,1,.3]
+            "black": [0, 0, 0, .3],
+            "blue": [0, 0, 1, .3],
+            "green": [0, 1, 0, .3],
+            "red": [1, 0, 0, .3],
+            "sky-blue": [0, 1, 1, .3],
+            "violet": [1, 0, 1, .3],
+            "yellow": [1, 1, 0, .3],
+            "white": [1, 1, 1, .3],
         }
 
-        self.box_image = box_image
+        self.image = image
         self.name = name
         self.price = price
         self.color = self.color_map[color]
@@ -34,4 +39,3 @@ class Box(MDCard, ButtonBehavior):
 
         if not toolbar.collide_point(self.last_touch.pos[0], self.last_touch.pos[1]):
             print(self.code)
-

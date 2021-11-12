@@ -25,13 +25,13 @@
             FitImage:
                 source: root.images[1]
                 radius: [0,15,0,0]
+
             FitImage:
                 source: root.images[2]
-#                radius: [15,15,0,0]
 
             FitImage:
                 source: root.images[3]
-#                radius: [15,15,0,0]
+
     MDBoxLayout:
         orientation: "vertical"
         spacing: 4
@@ -46,7 +46,7 @@
             theme_text_color: "Custom"
 
         MDLabel:
-            text: f"{root.events} Events"
+            text: root.events
             adaptive_size: True
             font_size: 17
             pos_hint: {"center_x": .5}
