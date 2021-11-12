@@ -1,4 +1,5 @@
 from kivy.lang import Builder
+from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 
 from components.box.box import Box
@@ -45,7 +46,7 @@ class EventsTab(MDScreen):
 
         for i in events:
             event = EVENTS[i]
-            self.ids.first_scroll.add_widget(Event(
+            self.ids.second_scroll.add_widget(Event(
                 name=event["name"],
                 date=event["date"],
                 location=event["location"],
