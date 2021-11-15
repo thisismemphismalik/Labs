@@ -1,0 +1,26 @@
+#:import ChipChooser components.chip_chooser.chip_chooser.ChipChooser
+
+<SearchTab>
+    name: "SearchTab"
+    md_bg_color: 0,0,0,1
+
+    ScrollView:
+        do_scroll_x: False
+        bar_width: 0
+
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_height: True
+            padding: [0,0,0,30]
+            md_bg_color: 1,1,1,1
+
+            Header:
+                current_page: "recherche"
+
+            MDTextField:
+                hint_text: "    tapez votre recherche"
+                adaptive_height: True
+
+            ChipChooser:
+                adaptive_size: True
+                pos_hint: {"center_x": .5}
