@@ -1,30 +1,49 @@
+#:import SearchChip components.chip_chooser.search_chip.search_chip.SearchChip
 <ChipChooser>
-    spacing:5
-    adaptive_size: True
+    spacing:50
+    size_hint: 1, None
+    height: 35
+    elevation: 0
+    md_bg_color: 1,1,1,1
+    ScrollView:
+        bar_width: 0
+        pos_hint: {"center_y": .57}
 
-    MDLabel:
-        text: "Event"
-        color: 0,0,0,.1
-        check: True
-        on_release: root.check(self)
+        MDFloatLayout:
+            size_hint: None, 1
+            width: box.width
+            MDBoxLayout:
+                id: box
+                md_bg_color: 1,1,1,1
+                spacing: 15
+                padding: [15,0]
+                adaptive_width: True
+                do_scroll_y: False
 
-    MDLabel:
-        text: "Date"
-        icon: ""
-        color: 0,0,0,.1
-        check: True
-        on_release: root.check(self)
+                SearchChip:
+                    text: "events"
+                    on_press: root.search(self)
 
-    MDLabel:
-        text: "Lieu"
-        icon: ""
-        color: 0,0,0,.1
-        check: True
-        on_release: root.check(self)
+                SearchChip:
+                    text: "dates"
+                    on_press: root.search(self)
 
-    MDLabel:
-        text: "Prix"
-        icon: ""
-        color: 0,0,0,.1
-        check: True
-        on_release: root.check(self)
+                SearchChip:
+                    text: "lieux"
+                    on_press: root.search(self)
+
+                SearchChip:
+                    text: "prix"
+                    on_press: root.search(self)
+
+            Widget:
+                id: marker
+                owner: "events"
+                pos: [15,15]
+                canvas:
+                    Color:
+                        rgba: (0,0,0,1)
+                    RoundedRectangle:
+                        size: 15, 15
+                        radius: [25]
+                        pos: self.pos

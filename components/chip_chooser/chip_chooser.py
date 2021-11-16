@@ -1,14 +1,12 @@
 from kivy.lang import Builder
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.floatlayout import MDFloatLayout
 
 Builder.load_file("./components/chip_chooser/chip_chooser.kv")
 
 
-class ChipChooser(MDBoxLayout):
-    def on_kv_post(self, base_widget):
-        last = self.children[~0]
-        last.on_press()
-
-    def check(self, chip):
-        print(self.children[~0].text)
-        # print(chip.touch)
+class ChipChooser(MDFloatLayout):
+    def search(self, chip):
+        self.ids.marker.x = chip.x
+        self.ids.marker.owner = chip.text
+        print(self.ids.marker.owner)

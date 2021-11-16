@@ -1,0 +1,19 @@
+<SearchChip>
+
+    text: "text"
+
+    md_bg_color: 0,0,0,.05
+    size_hint: None, None
+    size: ss.width + 50, 30
+    radius: 15
+    elevation: 0
+#    on_press: print(self.x)
+
+    MDFloatLayout:
+        MDLabel:
+            id: ss
+#            md_bg_color: 1,1,0,.3
+            adaptive_size: True
+            text: root.text
+            pos_hint: {"center_x": .5, "center_y": .57}
+
