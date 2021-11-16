@@ -1,4 +1,5 @@
 #:import Category components.category.category.Category
+#:import SeeMore components.see_more.see_more.SeeMore
 
 <EventsTab>
     name: "TicketsTab"
@@ -39,3 +40,23 @@
                         text: "Threading"
                         font_size: 35
                         pos_hint: {"x": .11}
+                SeeMore:
+                    adaptive_height: True
+
+                MDBoxLayout:
+#                    adaptive_height: True
+                    size_hint: 1, None
+                    height: 20
+
+                    MDLabel:
+                        text: "cliquer sur"
+                        adaptive_width: True
+                        halign: "right"
+
+                    MDIconButton:
+                        icon: "card-search-outline"
+#                        on_release: root.change_screen()
+                        pos_hint: {"center_y":.55}
+
+                    MDLabel:
+                        text: "pour rechercher des tickets"

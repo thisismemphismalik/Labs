@@ -6,7 +6,9 @@ Builder.load_file("./main_page/main_page_tabs/search_tab/search_tab.kv")
 
 class SearchTab(MDScreen):
     def correction(self, field):
-        if field.focused:
+        if field.focused or field.text != "":
             field.hint_text = ""
         else:
             field.hint_text = "    tapez votre recherche"
+
+        print(field.text.split(" "))

@@ -1,3 +1,2 @@
-# TODO: search bar
 # TODO: view more
-# TODO: 
+# TODO: go to search tab
