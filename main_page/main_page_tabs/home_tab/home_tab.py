@@ -105,6 +105,20 @@ class HomeTab(MDScreen):
                 self.license_dialog.open()
                 self.license_dialog_opened = True
 
+    def on_touch_down(self, touch):
+        app = MDApp.get_running_app()
+        toolbar = app.root.ids.main_page.ids.toolbar
+
+        pos = touch.pos
+
+        # print(pos)
+        print(toolbar.collide_point(pos[0], pos[1]))
+
+        if not toolbar.collide_point(pos[0], pos[1]):
+
+            # for x in self.walk():
+            super().on_touch_down(touch)
+
     # def on_touch_down(self, touch):
     #     app = MDApp.get_running_app()
     #     toolbar = app.root.ids.main_page.ids.toolbar

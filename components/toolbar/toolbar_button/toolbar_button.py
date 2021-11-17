@@ -30,3 +30,4 @@ class ToolbarButton(MDIconButton):
             tabs_manager = app.root.ids.main_page.ids.tabs_manager
             # print(self.tab)
             tabs_manager.current = self.tab
+
