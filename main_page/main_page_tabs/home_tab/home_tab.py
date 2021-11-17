@@ -28,7 +28,7 @@ class HomeTab(MDScreen):
                       price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
-        self.ids.first_scroll.add_widget(TreizeTickets("This Week", boxes))
+        self.ids.first_scroll.add_widget(TreizeTickets("Cette semaine", boxes))
 
         boxes.clear()
         events = [i for i in EVENTS.keys()]
@@ -42,7 +42,7 @@ class HomeTab(MDScreen):
                       price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
-        self.ids.first_scroll.add_widget(TreizeTickets("This Month", boxes))
+        self.ids.first_scroll.add_widget(TreizeTickets("Ce mois", boxes))
 
         boxes.clear()
         events = [i for i in EVENTS.keys()]
@@ -56,11 +56,12 @@ class HomeTab(MDScreen):
                       price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
             boxes.append(box)
 
-        self.ids.first_scroll.add_widget(TreizeTickets("Our Trends", boxes))
+        self.ids.first_scroll.add_widget(TreizeTickets("Nos Tendances", boxes))
 
     def __init__(self, **kw):
         self.button_added = False
         self.license_dialog = None
+        self.license_dialog_opened = False
 
         super().__init__(**kw)
 
@@ -86,12 +87,35 @@ class HomeTab(MDScreen):
         ticket_button = buttons[2]
         tabs_manager.current = ticket_button.tab
 
+    def close_it(self):
+        self.license_dialog_opened = False
+
     def copyright(self, scroller):
-        if not - 0.5 < scroller.scroll_y < 1.5:
+        a = 0.5
+
+        if not - a < scroller.scroll_y < 1.00 + a:
             if not self.license_dialog:
                 self.license_dialog = MDDialog(md_bg_color=[0, 0, 0, 1],
                                                title="[color=#ffffff][size=35]13.[/color][/size]",
                                                text="[color=#ffffff][size=35]from Memphis Laboratories[/color][/size]"
-                                                    "\n \n \n[color=#ffffff][size=17]version 1.0[/size][/color]")
+                                                    "\n \n \n[color=#ffffff][size=17]version 1.0[/size][/color]",
+                                               on_pre_dismiss=lambda x: self.close_it(), )
 
-            self.license_dialog.open()
+            if not self.license_dialog_opened:
+                self.license_dialog.open()
+                self.license_dialog_opened = True
+
+    # def on_touch_down(self, touch):
+    #     app = MDApp.get_running_app()
+    #     toolbar = app.root.ids.main_page.ids.toolbar
+    #
+    #     if toolbar.collide_point(touch.pos[0], touch.pos[1]):
+    #
+    #         for x in toolbar.children[0].children:
+    #             x.on_touch_down(touch)
+    #
+    #     else:
+    #         for x in self.children:
+    #             x.on_touch_down(touch)
+    #             for y in x.children:
+    #                 y.on_touch_down(touch)

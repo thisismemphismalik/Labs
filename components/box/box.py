@@ -34,8 +34,10 @@ class Box(MDCard, ButtonBehavior):
         super().__init__(**kwargs)
 
     def on_release(self):
+
         app = MDApp.get_running_app()
         toolbar = app.root.ids.main_page.ids.toolbar
 
         if not toolbar.collide_point(self.last_touch.pos[0], self.last_touch.pos[1]):
             print(self.code)
+
