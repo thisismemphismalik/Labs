@@ -8,6 +8,7 @@
     ScrollView:
         do_scroll_x: False
         bar_width: 0
+        id: scroller
 #        effect_cls: StiffScrollEffect
 
         MDBoxLayout:
@@ -42,6 +43,7 @@
                         pos_hint: {"x": .11}
                 SeeMore:
                     adaptive_height: True
+                    on_release: root.see_more(13, False)
 
                 MDBoxLayout:
 #                    adaptive_height: True

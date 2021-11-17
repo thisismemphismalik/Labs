@@ -1,3 +1,4 @@
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
@@ -42,7 +43,12 @@ class EventsTab(MDScreen):
             )
         )
 
-        events = [i for i in EVENTS.keys()][:25]
+        self.see_more(13, True)
+
+    def see_more(self, quantity, first):
+        number_children = len(self.ids.second_scroll.children) - 1
+
+        events = [i for i in EVENTS.keys()][number_children:number_children+quantity]
 
         for i in events:
             event = EVENTS[i]
@@ -55,3 +61,8 @@ class EventsTab(MDScreen):
                 code=i,
                 price=f'à partir de {event["tickets"][3]["price"]}',
             ))
+
+        first_child = self.ids.second_scroll.children[quantity - 1]
+
+        if not first:
+            Clock.schedule_once(lambda *dt: self.ids.scroller.scroll_to(first_child), 1)
