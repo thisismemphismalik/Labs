@@ -112,24 +112,10 @@ class HomeTab(MDScreen):
         pos = touch.pos
 
         # print(pos)
-        print(toolbar.collide_point(pos[0], pos[1]))
+        # print(toolbar.collide_point(pos[0], pos[1]))
 
         if not toolbar.collide_point(pos[0], pos[1]):
 
             # for x in self.walk():
             super().on_touch_down(touch)
 
-    # def on_touch_down(self, touch):
-    #     app = MDApp.get_running_app()
-    #     toolbar = app.root.ids.main_page.ids.toolbar
-    #
-    #     if toolbar.collide_point(touch.pos[0], touch.pos[1]):
-    #
-    #         for x in toolbar.children[0].children:
-    #             x.on_touch_down(touch)
-    #
-    #     else:
-    #         for x in self.children:
-    #             x.on_touch_down(touch)
-    #             for y in x.children:
-    #                 y.on_touch_down(touch)
