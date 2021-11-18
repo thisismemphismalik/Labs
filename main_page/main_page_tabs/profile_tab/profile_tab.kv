@@ -30,7 +30,8 @@
                     height: 200
 
                     MDBoxLayout:
-                        padding: [25,0,0,0]
+                        padding: [15,0,0,0]
+                        spacing: 10
 
                         MDBoxLayout:
                             pos_hint: {"bottom": 1}
@@ -70,10 +71,43 @@
                                     adaptive_height: True
                                     pos_hint: {"center_y": .55}
 
+                        MDSeparator:
+                            size_hint: None, None
+                            size: 1.5, 100
+                            pos_hint: {"center_y": .5}
+                            md_bg_color: 0,0,0,1
 
                         MDBoxLayout:
                             # name boxes
-                            md_bg_color: 1,1,0,.3
+#                            md_bg_color: 1,1,0,.3
 
+                            MDBoxLayout:
+                                id: names_box
+                                size_hint: 1, None
+                                height: 150
+                                adaptive_height: True
+#                                md_bg_color: 1,0,0,.3
+                                pos_hint: {"center_y": .5}
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "ousmane"
+                                    font_size: 35
+                                    adaptive_height: True
+
+                                MDLabel:
+                                    text: "mahamane"
+                                    font_size: 35
+                                    adaptive_height: True
+
+                                MDLabel:
+                                    text: "maïga"
+                                    font_size: 35
+                                    adaptive_height: True
+
+#                                MDLabel:
+#                                    text: "xcvbn"
+#                                    font_size: 35
+#                                    adaptive_height: True
 
                 MDSeparator:
