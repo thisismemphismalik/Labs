@@ -24,7 +24,10 @@ class ToolbarButton(MDIconButton):
                 if "outline" not in item.icon:
                     # print(f"changing {item.icon}")
                     item.icon = f"{item.icon}-outline"
+                    item.opacity = .3
+                    item.text_color = [1, 1, 1, 1]
             self.icon = self.icon[:~7]
+            self.opacity = 1
             self.selected = True
 
             tabs_manager = app.root.ids.main_page.ids.tabs_manager

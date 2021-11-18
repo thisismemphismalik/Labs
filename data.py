@@ -1131,7 +1131,43 @@ EVENTS = {
     },
 }
 
-# test = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-#
-# print(test[:10])
-# print(test[10:20])
+ACCOUNT = {
+    "13M-10S-33J": {
+        "verified": False,
+        "awards": {
+            "Memphis Award": True
+        },
+        "sent_tickets": {
+            "66C-31B-94S": {
+                "type": 2,
+                "quantity": 1
+            }
+        },
+        "received_tickets": {
+            "66C-31B-94S": {
+                "type": 2,
+                "quantity": 1
+            }
+        },
+        "bought_tickets": {
+            "66C-31B-94S": {
+                "type": 2,
+                "quantity": 1
+            }
+        },
+        "messages": {},
+        "informations": {
+            "first_name": "Ousmane",
+            "second_name": "Mahamane",
+            "third_name": "Maïga",
+            "image": "./lnx.png",
+            "location": "Bamako, yirimadjo",
+            "birthday": "16 août 1998",
+            "phone": "+223 79 96 44 01",
+            "identity_card": {
+                "number": "",
+                "image": ""
+            }
+        }
+    }
+}

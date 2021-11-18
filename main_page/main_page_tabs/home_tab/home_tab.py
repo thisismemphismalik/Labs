@@ -74,7 +74,7 @@ class HomeTab(MDScreen):
             if "outline" not in item.icon:
                 item.icon = f"{item.icon}-outline"
 
-        ticket_button = buttons[2]
+        ticket_button = buttons[3]
 
         ticket_button.icon = ticket_button.icon[:~7]
         ticket_button.selected = True
@@ -84,7 +84,7 @@ class HomeTab(MDScreen):
         app = MDApp.get_running_app()
         tabs_manager = app.root.ids.main_page.ids.tabs_manager
         buttons = app.root.ids.main_page.ids.toolbar.children[0].children
-        ticket_button = buttons[2]
+        ticket_button = buttons[3]
         tabs_manager.current = ticket_button.tab
 
     def close_it(self):
