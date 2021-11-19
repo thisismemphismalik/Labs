@@ -1156,11 +1156,12 @@ ACCOUNT = {
             }
         },
         "messages": {},
-        "informations": {
-            "first_name": "Ousmane",
-            "second_name": "Mahamane",
-            "third_name": "Maïga",
-            "image": "./lnx.png",
+        "infos": {
+            "names": {
+                "first_name": "Ousmane",
+                "second_name": "Mahamane",
+                "third_name": "Maïga", },
+            "image": "./mem.jpg",
             "location": "Bamako, yirimadjo",
             "birthday": "16 août 1998",
             "phone": "+223 79 96 44 01",
