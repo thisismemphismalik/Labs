@@ -14,6 +14,12 @@ class ProfileTab(MDScreen):
     names = None
     ACCOUNT = None
 
+    def on_kv_post(self, base_widget):
+        # labo
+        # self.ids.racine.add_widget(MDLabel(text="Vos Trophées", font_size=35, adaptive_height=True))
+        self.ids.racine.add_widget(AwardsFrame())
+        self.ids.racine.add_widget(MDSeparator())
+
     def on_pre_enter(self, *args):
         # mapping the data
         self.ACCOUNT = User
@@ -41,10 +47,6 @@ class ProfileTab(MDScreen):
             print("repaining")
             Clock.schedule_interval(self.repair, 1/60)
 
-        # labo
-        # self.ids.racine.add_widget(MDLabel(text="Vos Trophées", font_size=35, adaptive_height=True))
-        self.ids.racine.add_widget(AwardsFrame())
-        self.ids.racine.add_widget(MDSeparator())
     @staticmethod
     def check(labels):
         checker = None
