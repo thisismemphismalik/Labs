@@ -1131,11 +1131,22 @@ EVENTS = {
     },
 }
 
+AWARDS = {
+    "65J-18B-17N": {
+        "name": "SUPERNOVA",
+        "image": "",
+        "challenge": ""
+    }
+}
+
 ACCOUNT = {
     "13M-10S-33J": {
         "verified": False,
         "awards": {
-            "Memphis Award": True
+            "14U-93H-72P": {
+                "code": "",
+                "score": ""
+            }
         },
         "sent_tickets": {
             "66C-31B-94S": {

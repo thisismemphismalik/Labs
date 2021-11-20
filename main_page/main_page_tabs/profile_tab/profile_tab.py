@@ -1,7 +1,10 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
+from kivymd.uix.card import MDSeparator
+from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 
+from components.awards_frame.awards_frame import AwardsFrame
 from data import ACCOUNT as User
 
 Builder.load_file("./main_page/main_page_tabs/profile_tab/profile_tab.kv")
@@ -38,6 +41,10 @@ class ProfileTab(MDScreen):
             print("repaining")
             Clock.schedule_interval(self.repair, 1/60)
 
+        # labo
+        # self.ids.racine.add_widget(MDLabel(text="Vos Trophées", font_size=35, adaptive_height=True))
+        self.ids.racine.add_widget(AwardsFrame())
+        self.ids.racine.add_widget(MDSeparator())
     @staticmethod
     def check(labels):
         checker = None
