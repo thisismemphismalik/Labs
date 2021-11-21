@@ -1134,8 +1134,14 @@ EVENTS = {
 AWARDS = {
     "65J-18B-17N": {
         "name": "SUPERNOVA",
-        "image": "",
-        "challenge": ""
+        "image": "./vin.jpg",
+        "challenges": {
+            1: "Créer un compte",
+            2: "Compléter votre compte",
+            3: "Acheter un premier ticket"
+        },
+        "advantage": "à partir d'aujourd'hui, vous pouvez utiliser vos e-tickets sans être obliger de "
+                     "présenter votre pièce d'identité."
     }
 }
 

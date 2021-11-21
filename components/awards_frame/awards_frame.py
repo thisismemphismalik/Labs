@@ -11,6 +11,8 @@ class AwardsFrame(MDBoxLayout):
     def on_kv_post(self, base_widget):
         self.ids.awards_box.add_widget(AwardBox())
         self.ids.awards_box.add_widget(AwardBox())
+        self.ids.awards_box.add_widget(AwardBox())
+
         # pass
 
 # AKCircularProgress

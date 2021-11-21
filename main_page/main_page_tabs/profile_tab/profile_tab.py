@@ -18,7 +18,6 @@ class ProfileTab(MDScreen):
         # labo
         # self.ids.racine.add_widget(MDLabel(text="Vos Trophées", font_size=35, adaptive_height=True))
         self.ids.racine.add_widget(AwardsFrame())
-        self.ids.racine.add_widget(MDSeparator())
 
     def on_pre_enter(self, *args):
         # mapping the data

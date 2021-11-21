@@ -7,5 +7,6 @@ from kivymd.uix.tab import MDTabsBase
 Builder.load_file("./components/awards_frame/award_box/award_box.kv")
 
 
-class AwardBox(MDCard, MDTabsBase, ButtonBehavior):
+class AwardBox(MDCard, ButtonBehavior):
     pass
+
