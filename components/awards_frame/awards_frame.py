@@ -9,10 +9,10 @@ Builder.load_file("./components/awards_frame/awards_frame.kv")
 
 class AwardsFrame(MDBoxLayout):
     def on_kv_post(self, base_widget):
-        self.ids.awards_box.add_widget(AwardBox())
-        self.ids.awards_box.add_widget(AwardBox())
-        self.ids.awards_box.add_widget(AwardBox())
+        for i in range(5):
+            self.ids.awards_box.add_widget(AwardBox())
+
 
         # pass
 
-# AKCircularProgress
+AKCircularProgress

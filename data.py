@@ -1132,16 +1132,40 @@ EVENTS = {
 }
 
 AWARDS = {
-    "65J-18B-17N": {
-        "name": "SUPERNOVA",
+    "supernova": {
         "image": "./vin.jpg",
         "challenges": {
             1: "Créer un compte",
             2: "Compléter votre compte",
             3: "Acheter un premier ticket"
         },
+        "challenge": 3,
         "advantage": "à partir d'aujourd'hui, vous pouvez utiliser vos e-tickets sans être obliger de "
                      "présenter votre pièce d'identité."
+    },
+    "motheresa": {
+        "image": "./lnx.png",
+        "challenges": {
+            1: "Offrir 13 e_tickets",
+        },
+        "challenge": 13,
+        "advantage": "13. vous remboursera 50% d'un de vos e-tickets lorsque vous offrirez un ticket"
+    },
+    "caesare": {
+        "image": "./hie.jpg",
+        "challenges": {
+            1: "Acheter 13 e_tickets via l'appli",
+        },
+        "challenge": 13,
+        "advantage": "vous pourrez avoir une reduction de 30% en utiliser ce trophée"
+    },
+    "wafa'": {
+        "image": "./mem.jpg",
+        "challenges": {
+            1: "Se connecter tous les mois pendant un an",
+        },
+        "challenge": 12,
+        "advantage": "vous pourrez avoir une reduction de 30% en utiliser ce trophée"
     }
 }
 
@@ -1149,10 +1173,38 @@ ACCOUNT = {
     "13M-10S-33J": {
         "verified": False,
         "awards": {
-            "14U-93H-72P": {
-                "code": "",
-                "score": ""
-            }
+            "supernova": {
+                "challenges": {
+                    1: True,
+                    2: False,
+                    3: False
+                },
+                "score": 1,
+            },
+            "motheresa": {
+                "challenges": {
+                    1: False
+                },
+                "score": 5,
+                "level": 1,
+                "challenge": 13
+            },
+            "caesare": {
+                "challenges": {
+                    1: False
+                },
+                "score": 7,
+                "level": 1,
+                "challenge": 13
+            },
+            "wafa'": {
+                "challenges": {
+                    1: False
+                },
+                "score": 1,
+                "level": 3,
+                "challenge": 12
+            },
         },
         "sent_tickets": {
             "66C-31B-94S": {

@@ -1,7 +1,5 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
-from kivymd.uix.card import MDSeparator
-from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 
 from components.awards_frame.awards_frame import AwardsFrame
