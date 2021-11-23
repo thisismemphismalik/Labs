@@ -1180,6 +1180,8 @@ ACCOUNT = {
                     3: False
                 },
                 "score": 1,
+                "challenge": 3,
+                "image": "./lnx.png"
             },
             "motheresa": {
                 "challenges": {
@@ -1187,7 +1189,8 @@ ACCOUNT = {
                 },
                 "score": 5,
                 "level": 1,
-                "challenge": 13
+                "challenge": 13,
+                "image": "./vin.jpg"
             },
             "caesare": {
                 "challenges": {
@@ -1195,7 +1198,8 @@ ACCOUNT = {
                 },
                 "score": 7,
                 "level": 1,
-                "challenge": 13
+                "challenge": 13,
+                "image": "./hie.jpg"
             },
             "wafa'": {
                 "challenges": {
@@ -1203,7 +1207,8 @@ ACCOUNT = {
                 },
                 "score": 1,
                 "level": 3,
-                "challenge": 12
+                "challenge": 12,
+                "image": "./mem.jpg"
             },
         },
         "sent_tickets": {

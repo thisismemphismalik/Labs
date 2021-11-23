@@ -1,0 +1,49 @@
+#:import AKCircularProgress kivymd_extensions.akivymd.uix.progresswidget.AKCircularProgress
+
+<Motheresa>
+    size_hint: None, 1
+    width: 250
+    elevation: 0
+    radius: [15]
+#    md_bg_color: 0,0,0,.1
+    on_release: self.evolution()
+
+    MDFloatLayout:
+#        md_bg_color: 1,0,0,.3
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        FitImage:
+            source: root.image
+            radius: root.radius
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+        MDBoxLayout:
+            md_bg_color: 1,1,1,.8
+            padding: [20,0]
+            spacing: 15
+            radius: root.radius
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+            MDLabel:
+#                md_bg_color: 1,1,0,.3
+                text: root.name
+                pos_hint: {"center_x": .5, "center_y": .5}
+                font_size: 21
+                halign: "right"
+                bold: True
+
+
+            AKCircularProgress:
+                id: percent
+                circle_color: 0,0,0,1#root.md_bg_color
+                start_deg: 240
+                end_deg: 480
+                pos_hint: {"center_x": .5, "center_y": .45}
+                size_hint: None, None
+                size: 60, 60
+                percent_size: 17
+                percent_type: "relative"
+                max_percent: root.challenge
+                percent_color: 0,0,0,1
+                current_percent: root.score
+                background_circle_color: 0,0,0,1
