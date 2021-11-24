@@ -4,6 +4,7 @@ from kivymd.uix.screen import MDScreen
 
 from components.awards_frame.awards_frame import AwardsFrame
 from data import ACCOUNT as User
+from frames.profile_buttons_frame.profile_buttons_frame import ProfileButtonsFrame
 
 Builder.load_file("./main_page/main_page_tabs/profile_tab/profile_tab.kv")
 
@@ -14,8 +15,9 @@ class ProfileTab(MDScreen):
 
     def on_kv_post(self, base_widget):
         # labo
-        # self.ids.racine.add_widget(MDLabel(text="Vos Trophées", font_size=35, adaptive_height=True))
         self.ids.racine.add_widget(AwardsFrame())
+
+        self.ids.racine.add_widget(ProfileButtonsFrame())
 
     def on_pre_enter(self, *args):
         # mapping the data

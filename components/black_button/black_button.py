@@ -1,10 +1,9 @@
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
 
-Builder.load_file("./components/see_more/see_more.kv")
+Builder.load_file("./components/black_button/black_button.kv")
 
 
-class SeeMore(MDCard, ButtonBehavior):
+class BlackButton(MDCard, ButtonBehavior):
     pass

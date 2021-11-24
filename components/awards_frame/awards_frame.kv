@@ -1,25 +1,23 @@
 <AwardsFrame>
-#    spacing: 5
+    spacing: 5
     size_hint: 1, None
     height: 150
+    padding:[0,15,0,0]
 #    md_bg_color: 1,1,0,.3
     orientation: "vertical"
 
     MDLabel:
         id: head
 #        md_bg_color: 1,1,0,.3
-        text: "vos trophées >>>"
+        text: "vos trophées"
         adaptive_size: True
         font_size: 25
+#        bold: True
         pos_hint: {"x": .1}
-
-    MDSeparator:
-        size_hint: 1, None
-        height: 1
 
     ScrollView:
         do_scroll_y: False
-        bar_width: 1
+        bar_width: 0
         MDBoxLayout:
             spacing: 15
             padding: [15,0]

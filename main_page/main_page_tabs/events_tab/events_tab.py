@@ -90,12 +90,14 @@ class EventsTab(MDScreen):
             item.selected = False
             if "outline" not in item.icon:
                 item.icon = f"{item.icon}-outline"
+                item.opacity = .3
 
         ticket_button = buttons[1]
 
         ticket_button.icon = ticket_button.icon[:~7]
+        ticket_button.opacity = 1
         ticket_button.selected = True
-        Clock.schedule_once(self.switch, .25)
+        Clock.schedule_once(self.switch, .20)
 
     @staticmethod
     def switch(dt):

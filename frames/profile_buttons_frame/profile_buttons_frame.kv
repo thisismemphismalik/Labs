@@ -1,0 +1,22 @@
+#:import BlackButton components.black_button.black_button.BlackButton
+
+<ProfileButtonsFrame>
+    padding: [0,35,0,0]
+    size_hint: 1, None
+    height: 155
+#    md_bg_color: 0,1,0,.3
+
+    MDBoxLayout:
+        orientation: "vertical"
+        adaptive_height: True
+        spacing: 15
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        BlackButton:
+            text: "mes tickets"
+            on_release: print(self.height)
+        BlackButton:
+            text: "vendre un ticket"
+        BlackButton:
+            text: "signaler un problème"
+

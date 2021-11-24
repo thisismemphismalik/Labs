@@ -1,4 +1,4 @@
-#:import SeeMore components.see_more.see_more.SeeMore
+#:import BlackButton components.black_button.black_button.BlackButton
 
 <EventsTab>
     name: "TicketsTab"
@@ -44,7 +44,8 @@
                         text: "Threading"
                         font_size: 35
                         pos_hint: {"x": .11}
-                SeeMore:
+                BlackButton:
+                    text: "voir plus"
                     id: see_more
                     adaptive_height: True
                     on_release: root.see_more(13, False)

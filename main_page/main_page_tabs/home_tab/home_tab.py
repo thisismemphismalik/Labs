@@ -2,7 +2,6 @@ import random
 
 from kivy.clock import Clock
 from kivy.lang import Builder
-from kivy.uix.button import Button
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.screen import MDScreen
@@ -73,12 +72,14 @@ class HomeTab(MDScreen):
             item.selected = False
             if "outline" not in item.icon:
                 item.icon = f"{item.icon}-outline"
+                item.opacity = .3
 
         ticket_button = buttons[3]
 
         ticket_button.icon = ticket_button.icon[:~7]
+        ticket_button.opacity = 1
         ticket_button.selected = True
-        Clock.schedule_once(self.switch, .25)
+        Clock.schedule_once(self.switch, .20)
 
     def switch(self, dt):
         app = MDApp.get_running_app()
