@@ -1,5 +1,6 @@
 from kivy.clock import Clock
 from kivy.lang import Builder
+from kivymd.uix.card import MDSeparator
 from kivymd.uix.screen import MDScreen
 
 from components.awards_frame.awards_frame import AwardsFrame
@@ -16,6 +17,7 @@ class ProfileTab(MDScreen):
     def on_kv_post(self, base_widget):
         # labo
         self.ids.racine.add_widget(AwardsFrame())
+        self.ids.racine.add_widget(MDSeparator())
 
         self.ids.racine.add_widget(ProfileButtonsFrame())
 
