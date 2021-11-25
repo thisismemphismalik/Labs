@@ -16,10 +16,12 @@ class ProfileTab(MDScreen):
 
     def on_kv_post(self, base_widget):
         # labo
-        self.ids.racine.add_widget(AwardsFrame())
-        self.ids.racine.add_widget(MDSeparator())
+        racine = self.ids.racine
 
-        self.ids.racine.add_widget(ProfileButtonsFrame())
+        racine.add_widget(AwardsFrame())
+        racine.add_widget(MDSeparator())
+
+        racine.add_widget(ProfileButtonsFrame())
 
     def on_pre_enter(self, *args):
         # mapping the data
@@ -72,3 +74,7 @@ class ProfileTab(MDScreen):
 
         if self.check(labels):
             Clock.unschedule(self.repair)
+
+    def verify(self, widget):
+        self.ids.left_box.remove_widget(widget)
+        self.ids.left_box.padding = [0,0,0,25]
