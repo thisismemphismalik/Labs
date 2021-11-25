@@ -114,24 +114,3 @@ class SearchTab(MDScreen):
         self.empty = False
         print(len(results_box.children))
 
-    def shadowing(self, scroller):
-        results_box = self.ids.results
-        search_bar = self.ids.search_bar
-
-        if not self.empty:
-            if not self.old_scroll:
-                self.old_scroll = scroller.scroll_y
-
-            else:
-                if scroller.scroll_y > .9:
-                    search_bar.opacity = 1
-                # print(self.old_scroll, scroller.scroll_y)
-                if self.old_scroll - scroller.scroll_y > 0:
-                    if search_bar.opacity > 0:
-                        search_bar.opacity -= .2
-                else:
-                    if search_bar.opacity < 1:
-                        search_bar.opacity += .2
-                # print(self.old_scroll, scroller.scroll_y)
-                # print(self.old_scroll - scroller.scroll_y)
-                self.old_scroll = scroller.scroll_y
