@@ -1246,3 +1246,37 @@ ACCOUNT = {
         }
     }
 }
+
+TAGS = {
+    "12": {
+        "33A-41C-25C": True,
+        "45S-12N-41K": True,
+        "71B-41K-84G": True,
+        "14J-33G-14V": True,
+        "66C-31B-44S": True
+    },
+    "mai": {
+        "33A-41C-25C": True,
+        "33A-42C-25C": True,
+        "45S-13N-41K": True,
+        "71B-42K-84G": True,
+        "14J-34G-14V": True,
+        "66C-32B-44S": True,
+    },
+    "sidiki": {
+        "33A-41C-25A": True,
+        "33A-41C-25C": True,
+        "45S-12N-41A": True,
+        "71B-41K-84A": True,
+        "14J-33G-14A": True,
+        "66C-31B-44A": True,
+    },
+    "concert": {
+        "33A-41C-25A": True,
+        "33A-41C-25C": True,
+        "45S-12N-41A": True,
+        "71B-41K-84A": True,
+        "14J-33G-14A": True,
+        "66C-31B-44A": True,
+    },
+}
