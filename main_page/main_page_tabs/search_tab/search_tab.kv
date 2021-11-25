@@ -1,3 +1,7 @@
+#:import BlackButton components.black_button.black_button.BlackButton
+<See>
+    text: "voir plus"
+
 <SearchTab>
     name: "SearchTab"
     md_bg_color: 1,1,1,1
@@ -35,6 +39,7 @@
             MDSeparator:
 
             ScrollView:
+                id: scroller
                 do_scroll_x: False
                 size_hint: 1, None
                 height: 470
@@ -42,11 +47,10 @@
 
                 MDBoxLayout:
                     id: results
-#                    padding: [0,150,0,0]
                     orientation: "vertical"
                     adaptive_height: True
-#                    spacing: 30
-#                    md_bg_color: 0,0,1,.3
-#                    MDLabel:
-#                        text: "nothing"
+
+#                    MDBoxLayout:
+#                        adaptive_height: True
+#                        BlackButton:
 

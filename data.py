@@ -1264,17 +1264,27 @@ TAGS = {
     },
     "sidiki": {
         "33A-41C-25A": True,
+        "61C-31B-44S": True,
         "33A-41C-25C": True,
+        "33A-41C-95C": True,
         "45S-12N-41A": True,
+        "45S-12N-91K": True,
         "71B-41K-84A": True,
+        "71B-41K-94G": True,
         "66C-31B-44A": True,
+        "14J-33G-94V": True,
     },
     "concert": {
         "33A-41C-25A": True,
+        "71B-41X-84G": True,
         "33A-41C-25C": True,
+        "14J-33X-14V": True,
         "45S-12N-41A": True,
+        "66C-31X-44S": True,
         "14J-33G-14A": True,
+        "31A-41C-25C": True,
         "66C-31B-44A": True,
+        "41S-12N-41K": True,
     },
 }
 

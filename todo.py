@@ -1,7 +1,4 @@
-# TODO: magnify profile tab
-# TODO: see_more for search tab
 # TODO: red light for messages tab icon
-# TODO: events tab see_more button bug
 
 # todo: build opener tab
 # todo: build box open

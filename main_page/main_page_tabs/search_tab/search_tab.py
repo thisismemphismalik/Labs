@@ -1,8 +1,10 @@
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivymd.toast import toast
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 
+from components.black_button.black_button import BlackButton
 from components.event.event import Event
 from components.svg_image.svg_image import SvgImage
 from data import TAGS
@@ -11,6 +13,11 @@ Builder.load_file("./main_page/main_page_tabs/search_tab/search_tab.kv")
 
 
 class SearchTab(MDScreen):
+    see = None
+
+    results = None
+    add_counter = 1
+
     old_scroll = None
 
     last_search = None
@@ -84,7 +91,7 @@ class SearchTab(MDScreen):
 
             sorted_score = [key[0] for key in sorted(score.items(), key=lambda x: x[1], reverse=True)]
 
-            print(f"sorted_score --- {len(sorted_score)}")
+            print(f"sorted_score --- {sorted_score}")
 
             if len(sorted_score) > 0:
                 print("parsing")
@@ -108,9 +115,54 @@ class SearchTab(MDScreen):
         results_box.padding = [0, 30]
         results_box.spacing = 25
 
-        for i in events:
-            results_box.add_widget(Event(i))
+        if len(events) <= 13:
+            for i in events:
+                results_box.add_widget(Event(i))
+            self.see = See()
+            results_box.add_widget(self.see)
+        else:
+            for i in events[:13]:
+                results_box.add_widget(Event(i))
+            self.see = See()
+            results_box.add_widget(self.see)
+
+        self.results = events
 
         self.empty = False
         print(len(results_box.children))
 
+    def see_more(self):
+
+        if self.results is not None:
+            if len(self.results) > 13:
+                results_box = self.ids.results
+                un_added = self.results[13:]
+
+                results_box.remove_widget(self.see)
+
+                if len(un_added) <= 13:
+                    for i in un_added:
+                        results_box.add_widget(Event(i))
+                        first_child = results_box.children[len(un_added)-1]
+
+                else:
+                    for i in un_added[:13]:
+                        results_box.add_widget(Event(i))
+                        first_child = results_box.children[12]
+
+                results_box.add_widget(self.see)
+
+                Clock.schedule_once(lambda *dt: self.ids.scroller.scroll_to(first_child), 1)
+
+                self.results = un_added
+
+            else:
+                toast(text="tous les résultats sont affichés")
+        else:
+            toast(text="tous les résultats sont affichés")
+
+
+class See(BlackButton):
+    def on_release(self):
+        search_tab = self.parent.parent.parent.parent.parent
+        search_tab.see_more()
