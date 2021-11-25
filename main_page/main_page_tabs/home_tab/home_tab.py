@@ -20,11 +20,7 @@ class HomeTab(MDScreen):
         for i in range(13):
             event = random.choice(events)
 
-            box = Box(name=EVENTS[event]["name"],
-                      color=EVENTS[event]["color"],
-                      code=event,
-                      image=EVENTS[event]["image"],
-                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
+            box = Box(code=event)
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("Cette semaine", boxes))
@@ -34,11 +30,7 @@ class HomeTab(MDScreen):
         for i in range(13):
             event = random.choice(events)
 
-            box = Box(name=EVENTS[event]["name"],
-                      color=EVENTS[event]["color"],
-                      code=event,
-                      image=EVENTS[event]["image"],
-                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
+            box = Box(code=event)
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("Ce mois", boxes))
@@ -48,11 +40,7 @@ class HomeTab(MDScreen):
         for i in range(13):
             event = random.choice(events)
 
-            box = Box(name=EVENTS[event]["name"],
-                      color=EVENTS[event]["color"],
-                      code=event,
-                      image=EVENTS[event]["image"],
-                      price=f'à partir de {EVENTS[event]["tickets"][3]["price"]}')
+            box = Box(code=event)
             boxes.append(box)
 
         self.ids.first_scroll.add_widget(TreizeTickets("Nos Tendances", boxes))

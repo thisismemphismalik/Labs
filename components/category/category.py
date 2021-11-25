@@ -1,7 +1,11 @@
+import random
+
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
+
+from data import CATEGORIES, EVENTS
 
 Builder.load_file("./components/category/category.kv")
 
@@ -12,8 +16,8 @@ class Category(MDCard, ButtonBehavior):
 
     *to be called only in python code
     """
-    def __init__(self, images, name, events, code, color, **kwargs):
-
+    def __init__(self, code, **kwargs):
+        category = CATEGORIES[code]
         self.color_map = {
             "black": [0, 0, 0, .3],
             "blue": [0, 0, 1, .3],
@@ -24,11 +28,13 @@ class Category(MDCard, ButtonBehavior):
             "yellow": [1, 1, 0, .3],
             "white": [1, 1, 1, .3]
         }
+        elements = [i for i in category["elements"].keys()]
+        elements = [random.choice(elements) for i in range(4)]
+        self.images = [EVENTS[i]["image"] for i in elements]
 
-        self.images = images
-        self.name = name
-        self.events = f"{events} Events"
-        self.color = self.color_map[color]
+        self.name = category["name"]
+        self.events = f'{category["events"]} Events'
+        self.color = self.color_map[EVENTS[random.choice(elements)]["color"]]
         self.code = code
 
         super().__init__(**kwargs)

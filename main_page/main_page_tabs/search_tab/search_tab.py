@@ -1,7 +1,9 @@
 from kivy.lang import Builder
+from kivymd.toast import toast
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 
+from components.event.event import Event
 from components.svg_image.svg_image import SvgImage
 from data import TAGS
 
@@ -9,6 +11,10 @@ Builder.load_file("./main_page/main_page_tabs/search_tab/search_tab.kv")
 
 
 class SearchTab(MDScreen):
+    old_scroll = None
+
+    last_search = None
+
     empty = True
     empty_results_widgets = None
     empty_results_padding = [0, 150, 0, 0]
@@ -53,41 +59,79 @@ class SearchTab(MDScreen):
 
     def research(self, tags):
         a = self.prepare(tags)
-        val = []
-        score = {}
 
-        for i in a:
-            try:
-                val += TAGS[i]
-            except KeyError:
-                pass
+        print(f"a --- {len(a)}")
 
-        print(val)
+        if len(a) > 0:
+            print("searching")
+            val = []
+            score = {}
 
-        for i in val:
-            a = i
-            if i not in [i for i in score.keys()]:
-                score[a] = 1
+            for i in a:
+                try:
+                    val += TAGS[i]
+                except KeyError:
+                    pass
+
+            print(val)
+
+            for i in val:
+                a = i
+                if i not in [i for i in score.keys()]:
+                    score[a] = 1
+                else:
+                    score[a] += 1
+
+            sorted_score = [key[0] for key in sorted(score.items(), key=lambda x: x[1], reverse=True)]
+
+            print(f"sorted_score --- {len(sorted_score)}")
+
+            if len(sorted_score) > 0:
+                print("parsing")
+
+                if self.last_search != sorted_score:
+                    self.last_search = sorted_score
+                    self.parser(sorted_score)
+                else:
+                    toast(text="les resultats sont déja affichés")
             else:
-                score[a] += 1
+                toast(text="aucun event ne correspond")
 
-        sorted_score = [key[0] for key in sorted(score.items(), key=lambda x: x[1], reverse=True)]
-
-        print(sorted_score)
-        self.parser(sorted_score)
-        return sorted_score
+        else:
+            toast(text="Veuillez saisir un recherche")
 
     def parser(self, events):
         results_box = self.ids.results
-        if len(events) > 0:
-            for i in self.empty_results_widgets:
-                print(i)
-                results_box.remove_widget(i)
 
-            results_box.padding = [0, 30]
-            results_box.spacing = 100
+        results_box.clear_widgets()
+
+        results_box.padding = [0, 30]
+        results_box.spacing = 25
 
         for i in events:
-            results_box.add_widget(MDLabel(text=f"{i}"))
+            results_box.add_widget(Event(i))
 
         self.empty = False
+        print(len(results_box.children))
+
+    def shadowing(self, scroller):
+        results_box = self.ids.results
+        search_bar = self.ids.search_bar
+
+        if not self.empty:
+            if not self.old_scroll:
+                self.old_scroll = scroller.scroll_y
+
+            else:
+                if scroller.scroll_y > .9:
+                    search_bar.opacity = 1
+                # print(self.old_scroll, scroller.scroll_y)
+                if self.old_scroll - scroller.scroll_y > 0:
+                    if search_bar.opacity > 0:
+                        search_bar.opacity -= .2
+                else:
+                    if search_bar.opacity < 1:
+                        search_bar.opacity += .2
+                # print(self.old_scroll, scroller.scroll_y)
+                # print(self.old_scroll - scroller.scroll_y)
+                self.old_scroll = scroller.scroll_y

@@ -15,6 +15,7 @@
                 current_page: "recherche"
 
             MDBoxLayout:
+                id: search_bar
                 adaptive_height: True
                 padding: [15,0,0,0]
 #                md_bg_color: 0,0,0,.3
@@ -38,7 +39,7 @@
                 size_hint: 1, None
                 height: 470
                 bar_width: 2
-#                on_scroll_y:
+                on_scroll_y: root.shadowing(self)
 
                 MDBoxLayout:
                     id: results

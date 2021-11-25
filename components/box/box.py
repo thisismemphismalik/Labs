@@ -1,7 +1,8 @@
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
-from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
+
+from data import EVENTS
 
 Builder.load_file("./components/box/box.kv")
 
@@ -12,8 +13,8 @@ class Box(MDCard, ButtonBehavior):
 
     *to be called only in python code
     """
-    def __init__(self, image, name, price, color, code, **kwargs):
-
+    def __init__(self, code, **kwargs):
+        event = EVENTS[code]
         self.color_map = {
             "black": [0, 0, 0, .3],
             "blue": [0, 0, 1, .3],
@@ -25,10 +26,10 @@ class Box(MDCard, ButtonBehavior):
             "white": [1, 1, 1, .3],
         }
 
-        self.image = image
-        self.name = name
-        self.price = price
-        self.color = self.color_map[color]
+        self.image = event["image"]
+        self.name = event["name"]
+        self.price = f'{event["tickets"][3]["price"]}'
+        self.color = self.color_map[event["color"]]
         self.code = code
 
         super().__init__(**kwargs)
