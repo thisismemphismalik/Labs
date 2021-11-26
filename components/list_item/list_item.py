@@ -18,4 +18,4 @@ class ListItem(MDCard, ButtonBehavior):
         super().__init__(**kwargs)
 
     def on_release(self):
-        print(self.code)
+        MESSAGES[self.code]["read"] = True

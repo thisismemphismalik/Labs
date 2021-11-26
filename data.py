@@ -1290,8 +1290,27 @@ TAGS = {
 
 MESSAGES = {
     "99H-25J-66K": {
-        "title": "Recption de tickets",
+        "read": True,
+        "title": "Reception de tickets",
         "subject": "Issa Doumbia vous a offert un ticket",
         "date": "12 mai",
+        "sender": "74352744",
+        "body": ""
+    },
+    "99H-25J-66P": {
+        "read": False,
+        "title": "Reception de tickets",
+        "subject": "13. vous a offert un ticket",
+        "date": "12 mai",
+        "sender": "13.",
+        "body": ""
+    },
+    "79H-75J-66P": {
+        "read": False,
+        "title": "Demande de notation",
+        "subject": "Veuillez noter cet évent",
+        "date": "21 juin",
+        "sender": "13.",
+        "body": ""
     }
 }
