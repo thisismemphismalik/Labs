@@ -72,15 +72,24 @@ class BoxOpener(MDBoxLayout):
         self.code = code
         self.title = EVENTS[code]["name"]
         self.image = EVENTS[code]["image"]
-
         self.tickets = EVENTS[code]["tickets"]
 
         super().__init__(**kwargs)
+        self.add_tickets(self.tickets)
 
-    def on_kv_post(self, base_widget):
-        for i in [j for j in self.tickets.keys()]:
-            self.ids.tickets.add_widget(Ticket())
+    def add_tickets(self, tickets):
+        print(tickets)
+        ids = [i for i in tickets.keys()]
+        print(len(ids))
+        for j in ids:
+            print(tickets[j])
             self.ids.tickets.add_widget(MDSeparator())
+            self.ids.tickets.add_widget(Ticket(tickets[j]))
+        self.ids.tickets.add_widget(MDSeparator())
+
+        for k in range(4-len(ids)):
+            self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None],
+                                                    height=40))
 
     def go_back(self):
         app = MDApp.get_running_app()
@@ -93,6 +102,18 @@ class BoxOpener(MDBoxLayout):
 
 
 class Ticket(MDBoxLayout):
-    def __init__(self, **kwargs):
-
+    def __init__(self, info, **kwargs):
+        self.info = info
+        self.name = info["name"]
+        self.price = info["price"]
+        self.quantity = info["quantity"]
         super().__init__(**kwargs)
+        print(self.info)
+
+    def modify(self, but):
+        qt = self.ids.quantity
+        if but.icon == "minus" and int(qt.text) > 0:
+            qt.text = str(int(qt.text) - 1)
+
+        elif but.icon == "plus" and int(qt.text) < self.quantity:
+            qt.text = str(int(qt.text) + 1)
