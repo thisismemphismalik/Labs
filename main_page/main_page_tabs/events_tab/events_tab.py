@@ -57,16 +57,16 @@ class EventsTab(MDScreen):
 
         first_child = self.ids.second_scroll.children[quantity - 1]
 
-        if not first:
-            Clock.schedule_once(lambda *dt: self.ids.scroller.scroll_to(first_child), 1)
-
-        self.add_counter += 1
-
         if self.add_counter >= self.add_limit:
 
             see_more = self.ids.see_more
 
             self.ids.all_container.remove_widget(see_more)
+
+        if not first:
+            Clock.schedule_once(lambda *dt: self.ids.scroller.scroll_to(first_child), 1)
+
+        self.add_counter += 1
 
     def change_screen(self):
         app = MDApp.get_running_app()

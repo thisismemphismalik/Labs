@@ -1,5 +1,3 @@
-# TODO: red light for messages tab icon
-
 # todo: build opener tab
 # todo: build box open
 # todo: build category open
@@ -13,3 +11,6 @@
 # todo: build sign in page
 # todo: build account verification system
 # todo: build account setting page
+
+# fixme: events tab see_more button bug
+# fixme: more elements for search tags in data.py
