@@ -48,7 +48,7 @@ class Box(MDCard, ButtonBehavior):
         opener = manager.get_screen("OpenerTab")
 
         opener.clear_widgets()
-        opener.add_widget(BoxOpener(self.code))
+        opener.add_widget(BoxOpener("33A-41C-25C"))# self.code
 
         global backward
         backward = manager.current
@@ -87,9 +87,9 @@ class BoxOpener(MDBoxLayout):
             self.ids.tickets.add_widget(Ticket(tickets[j]))
         self.ids.tickets.add_widget(MDSeparator())
 
-        for k in range(4-len(ids)):
-            self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None],
-                                                    height=40))
+        # for k in range(5-len(ids)):
+        #     self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None],
+        #                                             height=38))
 
     def go_back(self):
         app = MDApp.get_running_app()

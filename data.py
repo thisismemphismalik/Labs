@@ -106,7 +106,19 @@ EVENTS = {
                 "price": "7 500 FCFA",
                 "advantage": "Advantage Three",
                 "quantity": 113
-            }
+            },
+            4: {
+                "name": "Ticket One",
+                "price": "15 000 FCFA",
+                "advantage": "Advantage One",
+                "quantity": 13
+            },
+            5: {
+                "name": "Ticket Two",
+                "price": "10 000 FCFA",
+                "advantage": "Advantage Two",
+                "quantity": 31
+            },
         }
     },
     "45S-12N-41K": {
