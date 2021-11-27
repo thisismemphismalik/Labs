@@ -17,6 +17,7 @@ class Box(MDCard, ButtonBehavior):
 
     *to be called only in python code
     """
+
     def __init__(self, code, **kwargs):
         event = EVENTS[code]
         self.color_map = {
@@ -42,18 +43,20 @@ class Box(MDCard, ButtonBehavior):
         self.open()
 
     def open(self):
+        # self.opacity = 0
         app = MDApp.get_running_app()
         manager = app.root.ids.main_page.ids.tabs_manager
 
         opener = manager.get_screen("OpenerTab")
 
         opener.clear_widgets()
-        opener.add_widget(BoxOpener("33A-41C-25C"))# self.code
 
         global backward
         backward = manager.current
 
         manager.current = "OpenerTab"
+
+        opener.add_widget(BoxOpener(self.code))  # "33A-41C-25C"
 
 
 class BoxOpener(MDBoxLayout):
@@ -81,15 +84,17 @@ class BoxOpener(MDBoxLayout):
         print(tickets)
         ids = [i for i in tickets.keys()]
         print(len(ids))
+
+        self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None], height=10))
+
         for j in ids:
             print(tickets[j])
             self.ids.tickets.add_widget(MDSeparator())
             self.ids.tickets.add_widget(Ticket(tickets[j]))
         self.ids.tickets.add_widget(MDSeparator())
 
-        # for k in range(5-len(ids)):
-        #     self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None],
-        #                                             height=38))
+        if len(ids) < 5:
+            self.ids.box_image.height += 163 - ((len(ids) - 1) * 41)
 
     def go_back(self):
         app = MDApp.get_running_app()

@@ -81,7 +81,7 @@ CATEGORIES = {
 EVENTS = {
     "33A-41C-25C": {
         "name": "Event Name",
-        "image": "./lnx.png",
+        "image": "./hie.jpg",
         "color": "blue",
         "category": "cinéma",
         "about": "description",
@@ -1325,4 +1325,15 @@ MESSAGES = {
         "sender": "13.",
         "body": ""
     }
+}
+
+COLORMAP = {
+    "black": [0, 0, 0, .3],
+    "blue": [0, 0, 1, .3],
+    "green": [0, 1, 0, .3],
+    "red": [1, 0, 0, .3],
+    "sky-blue": [0, 1, 1, .3],
+    "violet": [1, 0, 1, .3],
+    "yellow": [1, 1, 0, .3],
+    "white": [1, 1, 1, .3],
 }
