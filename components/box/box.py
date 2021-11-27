@@ -61,16 +61,6 @@ class Box(MDCard, ButtonBehavior):
 
 class BoxOpener(MDBoxLayout):
     def __init__(self, code, **kwargs):
-        self.color_map = {
-            "black": [0, 0, 0, .3],
-            "blue": [0, 0, 1, .3],
-            "green": [0, 1, 0, .3],
-            "red": [1, 0, 0, .3],
-            "sky-blue": [0, 1, 1, .3],
-            "violet": [1, 0, 1, .3],
-            "yellow": [1, 1, 0, .3],
-            "white": [1, 1, 1, .3],
-        }
 
         self.code = code
         self.title = EVENTS[code]["name"]
@@ -93,10 +83,12 @@ class BoxOpener(MDBoxLayout):
             self.ids.tickets.add_widget(Ticket(tickets[j]))
         self.ids.tickets.add_widget(MDSeparator())
 
+        self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None], height=10))
+
         if len(ids) < 5:
             self.ids.box_image.height += 163 - ((len(ids) - 1) * 41)
 
-    def go_back(self):
+    def go_back(self, dt):
         app = MDApp.get_running_app()
         manager = app.root.ids.main_page.ids.tabs_manager
 
@@ -104,7 +96,6 @@ class BoxOpener(MDBoxLayout):
 
         global backward
         manager.current = backward
-
 
 class Ticket(MDBoxLayout):
     def __init__(self, info, **kwargs):
@@ -130,23 +121,23 @@ class Ticket(MDBoxLayout):
         app = MDApp.get_running_app()
         screen = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
 
-        # res = None
+        res = None
 
         total = screen.children[0].ids.totals
 
         # total corrector
-        old = self.value_corrector(total.text)
+        old = self.value_decoder(total.text)
 
         # value corrector
-        val = self.value_corrector(value)
+        val = self.value_decoder(value)
         if sign == "-":
             res = old - val
         if sign == "+":
             res = old + val
 
-        total.text = f"{res}"
+        total.text = self.value_encoder(res)
 
-    def value_corrector(self, value):
+    def value_decoder(self, value):
         a = value.split(" ")
         if "FCFA" in a:
             a.pop(~0)
@@ -158,3 +149,29 @@ class Ticket(MDBoxLayout):
         b = int(b)
 
         return b
+
+    def value_encoder(self, value):
+        b = []
+        c = []
+        d = ""
+
+        if type(value) == int:
+            a = str(value)
+
+            for i in range(len(a)//3):
+                e = a[~2:]
+                a = a[:~2]
+                b.append(e)
+
+            if len(a) > 0:
+                b.append(a)
+
+            for i in range(len(b)):
+                c.append(b[~i])
+
+            for i in c:
+                d = d + f"{i} "
+
+            d = d + "FCFA"
+
+        return d
