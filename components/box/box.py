@@ -113,12 +113,48 @@ class Ticket(MDBoxLayout):
         self.price = info["price"]
         self.quantity = info["quantity"]
         super().__init__(**kwargs)
-        print(self.info)
+        # print(self.info)
+        # print(self.parent)
 
     def modify(self, but):
         qt = self.ids.quantity
         if but.icon == "minus" and int(qt.text) > 0:
             qt.text = str(int(qt.text) - 1)
+            self.check_total("-", self.price)
 
         elif but.icon == "plus" and int(qt.text) < self.quantity:
             qt.text = str(int(qt.text) + 1)
+            self.check_total("+", self.price)
+
+    def check_total(self, sign, value):
+        app = MDApp.get_running_app()
+        screen = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+
+        # res = None
+
+        total = screen.children[0].ids.totals
+
+        # total corrector
+        old = self.value_corrector(total.text)
+
+        # value corrector
+        val = self.value_corrector(value)
+        if sign == "-":
+            res = old - val
+        if sign == "+":
+            res = old + val
+
+        total.text = f"{res}"
+
+    def value_corrector(self, value):
+        a = value.split(" ")
+        if "FCFA" in a:
+            a.pop(~0)
+
+        b = ""
+        for i in a:
+            b = b + i
+
+        b = int(b)
+
+        return b
