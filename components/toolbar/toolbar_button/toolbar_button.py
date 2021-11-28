@@ -1,4 +1,5 @@
 from kivy.lang import Builder
+from kivy.uix.screenmanager import NoTransition
 from kivymd.app import MDApp
 from kivymd.uix.button import MDIconButton
 
@@ -29,7 +30,8 @@ class ToolbarButton(MDIconButton):
             self.opacity = 1
             self.selected = True
 
-            tabs_manager = app.root.ids.main_page.ids.tabs_manager
+            manager = app.root.ids.main_page.ids.tabs_manager
             # print(self.tab)
-            tabs_manager.current = self.tab
+            manager.transition = NoTransition()
+            manager.current = self.tab
 

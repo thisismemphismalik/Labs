@@ -1,10 +1,11 @@
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.screenmanager import RiseInTransition, FallOutTransition
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard, MDSeparator
 
-from data import EVENTS
+from data import EVENTS, COLORMAP
 
 Builder.load_file("./components/box/box.kv")
 
@@ -19,23 +20,13 @@ class Box(MDCard, ButtonBehavior):
     """
 
     def __init__(self, code, **kwargs):
-        event = EVENTS[code]
-        self.color_map = {
-            "black": [0, 0, 0, .3],
-            "blue": [0, 0, 1, .3],
-            "green": [0, 1, 0, .3],
-            "red": [1, 0, 0, .3],
-            "sky-blue": [0, 1, 1, .3],
-            "violet": [1, 0, 1, .3],
-            "yellow": [1, 1, 0, .3],
-            "white": [1, 1, 1, .3],
-        }
-
-        self.image = event["image"]
-        self.name = event["name"]
-        self.price = f'{event["tickets"][3]["price"]}'
-        self.color = self.color_map[event["color"]]
         self.code = code
+        self.data = EVENTS[code]
+
+        self.image = self.data["image"]
+        self.name = self.data["name"]
+        self.price = f'{self.data["tickets"][3]["price"]}'
+        self.color = COLORMAP[self.data["color"]]
 
         super().__init__(**kwargs)
 
@@ -53,13 +44,15 @@ class Box(MDCard, ButtonBehavior):
 
         global backward
         backward = manager.current
-
+        manager.transition = RiseInTransition()#RiseInTransition()#WipeTransition() #CardTransition()
         manager.current = "OpenerTab"
 
         opener.add_widget(BoxOpener(self.code))  # "33A-41C-25C"
 
 
 class BoxOpener(MDBoxLayout):
+    view = 1
+
     def __init__(self, code, **kwargs):
 
         self.code = code
@@ -92,10 +85,31 @@ class BoxOpener(MDBoxLayout):
         app = MDApp.get_running_app()
         manager = app.root.ids.main_page.ids.tabs_manager
 
-        self.clear_widgets()
-
         global backward
+        manager.transition = FallOutTransition()
         manager.current = backward
+
+    def info(self):
+        header = self.ids.header
+        info_box_1 = self.ids.info_box_1
+        info_box_2 = self.ids.info_box_2
+
+        if self.view == 1:
+            header.opacity = 0
+            self.ids.back.disabled = True
+
+            info_box_1.opacity = 1
+            self.view = 2
+
+        elif self.view == 2:
+            info_box_1.opacity = 0
+            info_box_2.opacity = 1
+            self.view = 3
+        else:
+            info_box_2.opacity = 0
+            header.opacity = 1
+            self.ids.back.disabled = False
+            self.view = 1
 
 class Ticket(MDBoxLayout):
     def __init__(self, info, **kwargs):
@@ -175,3 +189,4 @@ class Ticket(MDBoxLayout):
             d = d + "FCFA"
 
         return d
+

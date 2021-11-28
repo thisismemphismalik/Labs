@@ -50,17 +50,70 @@
 
     MDFloatLayout:
         id: box_image
-#        adaptive_height: True
         size_hint: 1, None
         height: 230
-#        padding: [0,0,0,5]
-#        md_bg_color: 1,0,0,.3
+
         FitImage:
             pos_hint: {"center_y": .5}
             source: root.image
 #            radius: [25]
+        MDFloatLayout:
+            id: info_box_1
+            size_hint: 1, None
+            height: box_image.height
+            opacity: 0
+            md_bg_color: 0,0,0,.3
+            pos_hint: {"top": 1}
+
+            MDLabel:
+                adaptive_height: True
+                text: "zadjkdjkzjkdkjzjk\nhjzjzjggzaghzgh\ndskfkdhhjfd"
+                halign: "center"
+                font_size: 20
+                bold: True
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_y": .5}
+        MDFloatLayout:
+            id: info_box_2
+            size_hint: 1, None
+            height: box_image.height
+            opacity: 0
+            md_bg_color: 0,0,0,.3
+            pos_hint: {"top": 1}
+
+            MDLabel:
+                adaptive_height: True
+                text: "458741122545\n78554122555412222\n785411225555555"
+                halign: "center"
+                font_size: 20
+                bold: True
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_y": .5}
 
         MDBoxLayout:
+            pos_hint: {"center_x": .9, "center_y":.1}
+            size_hint: None, None
+            size: 35, 35
+#            md_bg_color: 1,0,0,.3
+            MDIconButton:
+                id: info
+#                pos_hint: {"center_x": .5, "center_y": .5}
+                icon: "information-variant"
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                on_release: root.info()
+
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,.3
+                    RoundedRectangle:
+                        radius: [25]
+                        size: 35, 35
+                        pos: self.pos[0] + 6.5, self.pos[1] + 4.5
+        MDBoxLayout:
+            id: header
             md_bg_color: 0,0,0,.3
             size_hint: 1, None
             height: 50
@@ -79,6 +132,7 @@
                 pos_hint: {"center_y": .55}
 
             MDIconButton:
+                id: back
                 icon: "backburger"
                 user_font_size: 30
                 theme_text_color: "Custom"
