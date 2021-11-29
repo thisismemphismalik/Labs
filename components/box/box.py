@@ -158,12 +158,15 @@ class Ticket(MDBoxLayout):
             self.check_total("+", self.price)
 
     def check_total(self, sign, value):
-        app = MDApp.get_running_app()
-        opener = None
-        if self.backward != "OpenerTab":
-            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
-            opener = opener.ids.opener_manager.get_screen("TabOne")
         res = None
+
+        app = MDApp.get_running_app()
+        opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+
+        if self.backward != "OpenerTab":
+            opener = opener.ids.opener_manager.get_screen("TabOne")
+        else:
+            opener = opener.ids.opener_manager.get_screen("TabTwo")
 
         total = opener.children[0].ids.totals
 

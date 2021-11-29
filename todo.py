@@ -1,7 +1,3 @@
-# todo: build opener tab
-# todo: build box open
-# todo: build category open
-# todo: build event open
 # todo: build message open
 # todo: build award open
 
