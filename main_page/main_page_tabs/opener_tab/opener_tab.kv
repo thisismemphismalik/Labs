@@ -1,3 +1,13 @@
+#:import TabOne main_page.main_page_tabs.opener_tab.tab_one.tab_one.TabOne
+#:import TabTwo main_page.main_page_tabs.opener_tab.tab_two.tab_two.TabTwo
+
 <OpenerTab>
     name: "OpenerTab"
     md_bg_color: 1,1,1,1
+
+    MDBoxLayout:
+        orientation: "vertical"
+        ScreenManager:
+            id: opener_manager
+            TabOne:
+            TabTwo:

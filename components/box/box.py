@@ -1,6 +1,6 @@
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.screenmanager import RiseInTransition, FallOutTransition
+from kivy.uix.screenmanager import FallOutTransition, RiseInTransition
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard, MDSeparator
@@ -8,8 +8,6 @@ from kivymd.uix.card import MDCard, MDSeparator
 from data import EVENTS, COLORMAP
 
 Builder.load_file("./components/box/box.kv")
-
-backward = None
 
 
 class Box(MDCard, ButtonBehavior):
@@ -34,31 +32,48 @@ class Box(MDCard, ButtonBehavior):
         self.open()
 
     def open(self):
-        # self.opacity = 0
+        current = None
         app = MDApp.get_running_app()
-        manager = app.root.ids.main_page.ids.tabs_manager
+        toolbar = app.root.ids.main_page.ids.toolbar
+        buttons = toolbar.children[0].children
 
-        opener = manager.get_screen("OpenerTab")
+        for i in buttons:
+            if i.selected:
+                current = i.tab
+                break
 
-        opener.clear_widgets()
+        if current != "TabOne":
+            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+            opener = opener.ids.opener_manager.get_screen("TabOne")
+            # print(opener)
+            opener.clear_widgets()
+            #
+            manager = app.root.ids.main_page.ids.tabs_manager
+            manager.transition = RiseInTransition()
+            manager.current = "OpenerTab"
+            #
+            opener.add_widget(BoxOpener(self.code, self.data, current))  # "33A-41C-25C"
 
-        global backward
-        backward = manager.current
-        manager.transition = RiseInTransition()#RiseInTransition()#WipeTransition() #CardTransition()
-        manager.current = "OpenerTab"
 
-        opener.add_widget(BoxOpener(self.code))  # "33A-41C-25C"
 
 
 class BoxOpener(MDBoxLayout):
     view = 1
 
-    def __init__(self, code, **kwargs):
-
+    def __init__(self, code, data, backward, **kwargs):
         self.code = code
-        self.title = EVENTS[code]["name"]
-        self.image = EVENTS[code]["image"]
-        self.tickets = EVENTS[code]["tickets"]
+        self.data = data
+        self.backward = backward
+
+        self.name = self.data["name"]
+        self.image = self.data["image"]
+        self.category = self.data["category"]
+        self.about = self.data["about"]
+        self.location = self.data["location"]
+        self.date = self.data["date"]
+        self.hour = self.data["hour"]
+        self.tickets = self.data["tickets"]
+        self.infos = f"{self.location}\n \n le    {self.date}    à    {self.hour}\n \n {self.code}"
 
         super().__init__(**kwargs)
         self.add_tickets(self.tickets)
@@ -73,7 +88,7 @@ class BoxOpener(MDBoxLayout):
         for j in ids:
             print(tickets[j])
             self.ids.tickets.add_widget(MDSeparator())
-            self.ids.tickets.add_widget(Ticket(tickets[j]))
+            self.ids.tickets.add_widget(Ticket(tickets[j], self.backward))
         self.ids.tickets.add_widget(MDSeparator())
 
         self.ids.tickets.add_widget(MDBoxLayout(size_hint=[1, None], height=10))
@@ -83,11 +98,10 @@ class BoxOpener(MDBoxLayout):
 
     def go_back(self, dt):
         app = MDApp.get_running_app()
-        manager = app.root.ids.main_page.ids.tabs_manager
-
-        global backward
-        manager.transition = FallOutTransition()
-        manager.current = backward
+        if self.backward != "TabOne":
+            manager = app.root.ids.main_page.ids.tabs_manager
+            manager.transition = FallOutTransition()
+            manager.current = self.backward
 
     def info(self):
         header = self.ids.header
@@ -111,8 +125,10 @@ class BoxOpener(MDBoxLayout):
             self.ids.back.disabled = False
             self.view = 1
 
+
 class Ticket(MDBoxLayout):
-    def __init__(self, info, **kwargs):
+    def __init__(self, info, back, **kwargs):
+        self.backward = back
         self.info = info
         self.name = info["name"]
         self.price = info["price"]
@@ -133,11 +149,13 @@ class Ticket(MDBoxLayout):
 
     def check_total(self, sign, value):
         app = MDApp.get_running_app()
-        screen = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
-
+        opener = None
+        if self.backward != "TabOne":
+            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+            opener = opener.ids.opener_manager.get_screen("TabOne")
         res = None
 
-        total = screen.children[0].ids.totals
+        total = opener.children[0].ids.totals
 
         # total corrector
         old = self.value_decoder(total.text)
