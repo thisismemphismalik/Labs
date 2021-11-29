@@ -1,8 +1,10 @@
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.screenmanager import RiseInTransition
 from kivymd.app import MDApp
 from kivymd.uix.card import MDCard
 
+from components.box.box import BoxOpener
 from data import EVENTS, COLORMAP
 
 Builder.load_file("./components/event/event.kv")
@@ -26,8 +28,21 @@ class Event(MDCard, ButtonBehavior):
         super().__init__(**kwargs)
 
     def on_release(self):
-        app = MDApp.get_running_app()
-        toolbar = app.root.ids.main_page.ids.toolbar
+        self.open()
 
-        if not toolbar.collide_point(self.last_touch.pos[0], self.last_touch.pos[1]):
-            print(self.code)
+    def open(self):
+        app = MDApp.get_running_app()
+        current = app.root.ids.main_page.ids.tabs_manager.current
+
+        if current != "OpenerTab":
+            print(current)
+            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+            opener = opener.ids.opener_manager.get_screen("TabOne")
+            # print(opener)
+            opener.clear_widgets()
+            #
+            manager = app.root.ids.main_page.ids.tabs_manager
+            manager.transition = RiseInTransition()
+            manager.current = "OpenerTab"
+            #
+            opener.add_widget(BoxOpener(self.code, self.data, current))

@@ -54,3 +54,72 @@
             text_color: 0,0,0,.7
 
         Widget:
+
+
+<CategoryOpener>
+    orientation: "vertical"
+    spacing: 25
+
+    MDFloatLayout:
+        size_hint: .8, None
+        height: 75
+        pos_hint: {"center_x": .5}
+
+        FitImage:
+            id: image_box
+            pos_hint: {"center_x": .5, "top": 1}
+            source: root.images[~0]
+            radius: [0,0,25,25]
+
+        MDFloatLayout:
+            size_hint: 1, None
+            height: 75
+            pos_hint: {"center_x": .5, "top": 1}
+            radius: [0,0,25,25]
+            md_bg_color: 0,0,0,.3
+
+            MDLabel:
+                adaptive_height: True
+                text: root.name
+                halign: "center"
+                font_size: 20
+                bold: True
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_x": .5, "center_y": .75}
+
+            MDLabel:
+                adaptive_height: True
+                text: f"{len(root.elements)} évents"
+                halign: "center"
+                font_size: 17.5
+                theme_text_color: "Custom"
+                text_color: 1,1,1,1
+                pos_hint: {"center_x": .5, "center_y": .4}
+    ScrollView:
+        bar_width: 0
+        size_hint: 1, None
+        height: 200
+        do_scroll_y: False
+        MDBoxLayout:
+#            md_bg_color:1,1,0,.3
+            padding: [25,0]
+            spacing: 25
+            adaptive_width: True
+            id: box_container1
+
+    ScrollView:
+        bar_width: 0
+        size_hint: 1, None
+        height: 200
+        adaptive_height: True
+        do_scroll_y: False
+        on_scroll_x: print(self.scroll_x)
+        MDBoxLayout:
+#            md_bg_color:1,1,0,.3
+            padding: [25,0]
+            spacing: 25
+            adaptive_width: True
+            id: box_container2
+
+    Widget:

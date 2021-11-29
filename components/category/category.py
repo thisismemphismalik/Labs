@@ -1,11 +1,15 @@
 import random
 
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.screenmanager import RiseInTransition
 from kivymd.app import MDApp
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
 
-from data import CATEGORIES, EVENTS
+from components.box.box import Box
+from data import CATEGORIES, COLORMAP, EVENTS
 
 Builder.load_file("./components/category/category.kv")
 
@@ -16,32 +20,67 @@ class Category(MDCard, ButtonBehavior):
 
     *to be called only in python code
     """
-    def __init__(self, code, **kwargs):
-        category = CATEGORIES[code]
-        self.color_map = {
-            "black": [0, 0, 0, .3],
-            "blue": [0, 0, 1, .3],
-            "green": [0, 1, 0, .3],
-            "red": [1, 0, 0, .3],
-            "sky-blue": [0, 1, 1, .3],
-            "violet": [1, 0, 1, .3],
-            "yellow": [1, 1, 0, .3],
-            "white": [1, 1, 1, .3]
-        }
-        elements = [i for i in category["elements"].keys()]
-        elements = [random.choice(elements) for i in range(4)]
-        self.images = [EVENTS[i]["image"] for i in elements]
 
-        self.name = category["name"]
-        self.events = f'{category["events"]} Events'
-        self.color = self.color_map[EVENTS[random.choice(elements)]["color"]]
+    def __init__(self, code, **kwargs):
         self.code = code
+        self.data = CATEGORIES[self.code]
+        self.color_map = COLORMAP
+        self.name = self.data["name"]
+        self.events = f'{self.data["events"]} Events'
+
+        self.elements = [i for i in self.data["elements"].keys()]
+        self.four_elements = [EVENTS[self.elements[i]] for i in range(4)]
+
+        self.images = [self.four_elements[i]["image"] for i in range(4)]
+        self.color = self.color_map[random.choice(self.four_elements)["color"]]
 
         super().__init__(**kwargs)
 
     def on_release(self):
-        app = MDApp.get_running_app()
-        toolbar = app.root.ids.main_page.ids.toolbar
+        self.open()
 
-        if not toolbar.collide_point(self.last_touch.pos[0], self.last_touch.pos[1]):
-            print(self.code)
+    def open(self):
+        app = MDApp.get_running_app()
+        current = app.root.ids.main_page.ids.tabs_manager.current
+
+        if current != "OpenerTab":
+            print(current)
+            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+            opener = opener.ids.opener_manager.get_screen("TabOne")
+            # print(opener)
+            opener.clear_widgets()
+            #
+            manager = app.root.ids.main_page.ids.tabs_manager
+            manager.transition = RiseInTransition()
+            manager.current = "OpenerTab"
+            #
+            opener.add_widget(CategoryOpener(self.code, self.name, self.elements, self.images))  # "33A-41C-25C"
+
+
+class CategoryOpener(MDBoxLayout):
+    step = 0
+
+    def __init__(self, code, name, elements, images,  **kwargs):
+        self.code = code
+        self.elements = elements
+        self.images = images
+        self.name = name.upper()
+        super().__init__(**kwargs)
+        Clock.schedule_interval(self.image_animation, 3)
+
+    def on_kv_post(self, base_widget):
+        self.add_boxes()
+
+    def image_animation(self, dt):
+        # images = self.images
+
+        self.ids.image_box.source = self.images[self.step]
+        if self.step < 3:
+            self.step += 1
+        else:
+            self.step = 0
+
+    def add_boxes(self):
+        for i in self.elements:
+            self.ids.box_container1.add_widget(Box(i))
+            self.ids.box_container2.add_widget(Box(i))

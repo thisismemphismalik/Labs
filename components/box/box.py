@@ -32,17 +32,11 @@ class Box(MDCard, ButtonBehavior):
         self.open()
 
     def open(self):
-        current = None
         app = MDApp.get_running_app()
-        toolbar = app.root.ids.main_page.ids.toolbar
-        buttons = toolbar.children[0].children
+        current = app.root.ids.main_page.ids.tabs_manager.current
 
-        for i in buttons:
-            if i.selected:
-                current = i.tab
-                break
-
-        if current != "TabOne":
+        if current != "OpenerTab":
+            print(current)
             opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
             opener = opener.ids.opener_manager.get_screen("TabOne")
             # print(opener)
@@ -53,8 +47,6 @@ class Box(MDCard, ButtonBehavior):
             manager.current = "OpenerTab"
             #
             opener.add_widget(BoxOpener(self.code, self.data, current))  # "33A-41C-25C"
-
-
 
 
 class BoxOpener(MDBoxLayout):
@@ -98,7 +90,7 @@ class BoxOpener(MDBoxLayout):
 
     def go_back(self, dt):
         app = MDApp.get_running_app()
-        if self.backward != "TabOne":
+        if self.backward != "OpenerTab":
             manager = app.root.ids.main_page.ids.tabs_manager
             manager.transition = FallOutTransition()
             manager.current = self.backward
@@ -125,6 +117,9 @@ class BoxOpener(MDBoxLayout):
             self.ids.back.disabled = False
             self.view = 1
 
+    def buy(self):
+        print(self.ids.totals.text)
+
 
 class Ticket(MDBoxLayout):
     def __init__(self, info, back, **kwargs):
@@ -150,7 +145,7 @@ class Ticket(MDBoxLayout):
     def check_total(self, sign, value):
         app = MDApp.get_running_app()
         opener = None
-        if self.backward != "TabOne":
+        if self.backward != "OpenerTab":
             opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
             opener = opener.ids.opener_manager.get_screen("TabOne")
         res = None
