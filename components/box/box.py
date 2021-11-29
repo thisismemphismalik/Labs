@@ -34,10 +34,10 @@ class Box(MDCard, ButtonBehavior):
     def open(self):
         app = MDApp.get_running_app()
         current = app.root.ids.main_page.ids.tabs_manager.current
+        opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
 
         if current != "OpenerTab":
             print(current)
-            opener = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
             opener = opener.ids.opener_manager.get_screen("TabOne")
             # print(opener)
             opener.clear_widgets()
@@ -47,6 +47,15 @@ class Box(MDCard, ButtonBehavior):
             manager.current = "OpenerTab"
             #
             opener.add_widget(BoxOpener(self.code, self.data, current))  # "33A-41C-25C"
+        else:
+            print(current)
+            manager = opener.ids.opener_manager
+            opener = opener.ids.opener_manager.get_screen("TabTwo")
+            opener.clear_widgets()
+
+            manager.transition = RiseInTransition()
+            manager.current = "TabTwo"
+            opener.add_widget(BoxOpener(self.code, self.data, current))
 
 
 class BoxOpener(MDBoxLayout):
@@ -94,6 +103,12 @@ class BoxOpener(MDBoxLayout):
             manager = app.root.ids.main_page.ids.tabs_manager
             manager.transition = FallOutTransition()
             manager.current = self.backward
+
+        else:
+            manager = app.root.ids.main_page.ids.tabs_manager.get_screen("OpenerTab")
+            manager = manager.ids.opener_manager
+            manager.transition = FallOutTransition()
+            manager.current = "TabOne"
 
     def info(self):
         header = self.ids.header

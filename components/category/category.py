@@ -3,7 +3,7 @@ import random
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.screenmanager import RiseInTransition
+from kivy.uix.screenmanager import RiseInTransition, FallOutTransition
 from kivymd.app import MDApp
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
@@ -106,3 +106,10 @@ class CategoryOpener(MDBoxLayout):
                     self.ids.box_container1.add_widget(Box(i))
                 for i in to_add[half:]:
                     self.ids.box_container2.add_widget(Box(i))
+
+    def go_back(self, dt):
+        app = MDApp.get_running_app()
+        manager = app.root.ids.main_page.ids.tabs_manager
+
+        manager.transition = FallOutTransition()
+        manager.current = "TicketsTab"
