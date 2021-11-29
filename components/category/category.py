@@ -59,6 +59,7 @@ class Category(MDCard, ButtonBehavior):
 
 class CategoryOpener(MDBoxLayout):
     step = 0
+    round = 0
 
     def __init__(self, code, name, elements, images,  **kwargs):
         self.code = code
@@ -81,6 +82,27 @@ class CategoryOpener(MDBoxLayout):
             self.step = 0
 
     def add_boxes(self):
-        for i in self.elements:
-            self.ids.box_container1.add_widget(Box(i))
-            self.ids.box_container2.add_widget(Box(i))
+        if len(self.elements) >= 13:
+            to_add = self.elements[:13]
+
+            for i in to_add[:7]:
+                self.ids.box_container1.add_widget(Box(i))
+
+            for j in to_add[7:13]:
+                self.ids.box_container2.add_widget(Box(j))
+        else:
+            to_add = self.elements
+
+            if len(to_add) % 2 == 0:
+                half = len(to_add) // 2
+                for i in to_add[:half]:
+                    self.ids.box_container1.add_widget(Box(i))
+                for i in to_add[half:]:
+                    self.ids.box_container2.add_widget(Box(i))
+
+            else:
+                half = (len(to_add) // 2) + 1
+                for i in to_add[:half]:
+                    self.ids.box_container1.add_widget(Box(i))
+                for i in to_add[half:]:
+                    self.ids.box_container2.add_widget(Box(i))
