@@ -1,0 +1,50 @@
+<Rater>
+    adaptive_height: True
+    radius: [25]
+    spacing: 25
+    padding: [15, 0]
+    orientation: "vertical"
+
+    MDBoxLayout:
+        adaptive_height: True
+        orientation: "vertical"
+        MDLabel:
+            text: root.name
+            font_size: 25
+            adaptive_height: True
+            halign: "center"
+
+        MDLabel:
+            text: root.date
+            font_size: 17
+            theme_text_color: "Custom"
+            text_color: 0,0,0,.5
+            adaptive_height: True
+            halign: "center"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        adaptive_height: True
+        AKRating:
+            direction : 'lr'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_rate: root.valuer(self)
+            animation_type: "wobble"
+            normal_color: 0,0,0,1
+            active_color: 0,0,0,1
+
+        MDLabel:
+            id: translater
+            text: "Médiocre !"
+            font_size: 20
+            theme_text_color: "Custom"
+            text_color: 0,0,0,1
+            adaptive_height: True
+            halign: "center"
+
+    MDTextField:
+        text: "Laissez un commentaire"
+        theme_text_color: "Custom"
+        hint_text_color: 0,0,0,.7
+        on_focus: root.check(self)
+

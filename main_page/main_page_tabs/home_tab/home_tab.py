@@ -1,5 +1,3 @@
-import random
-
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -18,7 +16,7 @@ class HomeTab(MDScreen):
         boxes = []
         events = [i for i in EVENTS.keys()]
         for i in range(13):
-            event = random.choice(events)
+            event = events[i]
 
             box = Box(code=event)
             boxes.append(box)
@@ -28,7 +26,7 @@ class HomeTab(MDScreen):
         boxes.clear()
         events = [i for i in EVENTS.keys()]
         for i in range(13):
-            event = random.choice(events)
+            event = events[i]
 
             box = Box(code=event)
             boxes.append(box)
@@ -38,7 +36,7 @@ class HomeTab(MDScreen):
         boxes.clear()
         events = [i for i in EVENTS.keys()]
         for i in range(13):
-            event = random.choice(events)
+            event = events[i]
 
             box = Box(code=event)
             boxes.append(box)

@@ -1334,27 +1334,43 @@ MESSAGES = {
     "99H-25J-66K": {
         "read": True,
         "title": "Reception de tickets",
-        "subject": "Issa Doumbia vous a offert un ticket",
+        "abstract": "Issa Doumbia vous a offert un ticket",
         "date": "12 mai",
+        "hour": "20:45",
+        "type": "ticket",
         "sender": "74352744",
-        "body": ""
+        "body": "Ce numéro vous a offert un ticket"
     },
     "99H-25J-66P": {
         "read": False,
-        "title": "Reception de tickets",
-        "subject": "13. vous a offert un ticket",
+        "title": "Bon de reduction",
+        "abstract": "13. vous offre un bon de reduction",
         "date": "12 mai",
+        "hour": "16:18",
+        "type": "minus",
         "sender": "13.",
         "body": ""
     },
     "79H-75J-66P": {
         "read": False,
         "title": "Demande de notation",
-        "subject": "Veuillez noter cet évent",
+        "abstract": "Veuillez noter cet évent",
         "date": "21 juin",
+        "hour": "15:45",
+        "type": "rating",
+        "sender": "13.",
+        "body": "Notez cet événement s'il vous plait"
+    },
+    "79H-75A-56P": {
+        "read": False,
+        "title": "Information",
+        "abstract": "Bientôt un concert de Salif Keïta",
+        "date": "21 juin",
+        "hour": "15:45",
+        "type": "alert",
         "sender": "13.",
         "body": ""
-    }
+    },
 }
 
 COLORMAP = {
@@ -1367,3 +1383,4 @@ COLORMAP = {
     "yellow": [1, 1, 0, .3],
     "white": [1, 1, 1, .3],
 }
+

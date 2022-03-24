@@ -1,5 +1,3 @@
-import random
-
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
@@ -32,7 +30,7 @@ class Category(MDCard, ButtonBehavior):
         self.four_elements = [EVENTS[self.elements[i]] for i in range(4)]
 
         self.images = [self.four_elements[i]["image"] for i in range(4)]
-        self.color = self.color_map[random.choice(self.four_elements)["color"]]
+        self.color = self.color_map[self.four_elements[0]["color"]]
 
         super().__init__(**kwargs)
 
