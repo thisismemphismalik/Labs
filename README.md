@@ -1,5 +1,5 @@
 # Labs
-This repo is the front of our project **treize.ml**, an online platform for **e-Tickets** purchase, sale and exchange.
+This repo is the front-end of our project **treize.ml**, an online platform for **e-Tickets** purchase, sale and exchange.
 
 ## Short Demo Video
 The app is still in development.
